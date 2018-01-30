@@ -44,7 +44,7 @@
           <div class="navbar-header"><a href="index.html" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">PORRAS</strong><strong>UGALDE</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">P</strong><strong>U</strong></div></a>
-            <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
+            <button class="sidebar-toggle"><i class="fa fa-bars"></i></button>
           </div>
           <ul class="right-menu list-inline no-margin-bottom">    
             <li class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="icon-email"></i><span class="badge dashbg-1">1</span></a>
@@ -57,7 +57,14 @@
                 <li><a href="#" class="dropdown-item text-center message"> <strong>See All Messages <i class="fa fa-angle-right"></i></strong></a></li>
               </ul>
             </li>
-            <li class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link">Logout <i class="icon-logout"></i></a></li>
+            <li class="list-inline-item logout">                   
+             
+              <a id="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout <i class="icon-logout"></i></a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
+            </li>
           </ul>
         </div>
       </nav>
@@ -66,14 +73,14 @@
       <!-- Sidebar Navigation-->
       <nav id="sidebar">
         <!-- Sidebar Header-->
-        <div class="sidebar-header d-flex align-items-center">
+        <div id="left-media" class="sidebar-header d-flex align-items-center">
           <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
           <div class="title">
-            <h1 class="h5">Kevin Arias</h1>
+            <h1 class="h5">{{ auth()->user()->username }}</h1>
             <p>Diseñador Web</p>
           </div>
         </div>
-        <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+        <!-- Sidebar Navidation Menus-->
         <ul class="list-unstyled">
                 <li class="active"><a href="index.html"> <i class="icon-home"></i>Principal </a></li>
                 <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>

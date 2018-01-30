@@ -45,15 +45,25 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                    <form id="login-form" role="form" method="POST" action="{{ url('') }}">
+                    <form id="login-form" role="form" method="POST" action="{{ route('login') }}">
                         {!! csrf_field() !!}
-                        <div class="form-group">
-                          <input id="login-username" type="text" name="loginUsername" required="" class="input-material">
+                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                          <input id="login-username" type="text" name="username" required="" class="input-material">
                           <label for="login-username" class="label-material">Usuario</label>
+                           @if ($errors->has('username'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('username') }}</strong>
+                                </span>
+                            @endif
                         </div>
-                        <div class="form-group">
-                          <input id="login-password" type="password" name="loginPassword" required="" class="input-material">
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                          <input id="login-password" type="password" name="password" required="" class="input-material">
                           <label for="login-password" class="label-material">Contraseña</label>
+                          @if ($errors->has('password'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('password') }}</strong>
+                              </span>
+                          @endif
                         </div>
                         <button id="btnSignIn" type="submit" class="btn btn-primary">Ingresar</button>
                     </form>
