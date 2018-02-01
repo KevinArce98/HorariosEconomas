@@ -47,7 +47,7 @@
             <button class="sidebar-toggle"><i class="fa fa-bars"></i></button>
           </div>
           <ul class="right-menu list-inline no-margin-bottom">    
-            <li class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="icon-email"></i><span class="badge dashbg-1">1</span></a>
+            <li class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="fa fa-envelope-o fa-1x"></i><span class="badge dashbg-1">1</span></a>
               <ul aria-labelledby="navbarDropdownMenuLink1" class="dropdown-menu messages">
                 <li><a href="#" class="dropdown-item message d-flex align-items-center">
                     <div class="profile"><img src="img/avatar-5.jpg" alt="..." class="img-fluid">
@@ -59,7 +59,7 @@
             </li>
             <li class="list-inline-item logout">                   
              
-              <a id="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout <i class="icon-logout"></i></a>
+              <a id="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout <i class="fa fa-sign-out"></i></a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
