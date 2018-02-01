@@ -82,18 +82,18 @@
         </div>
         <!-- Sidebar Navidation Menus-->
         <ul class="list-unstyled">
-                <li class="active"><a href="index.html"> <i class="icon-home"></i>Principal </a></li>
-                <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
-                <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
-                <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
+                <li class="active"><a href="{{ route('home') }}"> <i class="icon-home"></i>Principal </a></li>
+                <li><a href="#"> <i class="fa fa-calendar"></i>Horarios </a></li>
+                <li><a href="{{ route('roles.index') }}"> <i class="fa fa-list"></i>Roles </a></li>
+                <li><a href="#"> <i class="fa fa-users"></i>Usuarios </a></li>
+               <!-- <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="#">Page</a></li>
                     <li><a href="#">Page</a></li>
                     <li><a href="#">Page</a></li>
                   </ul>
                 </li>
-                <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
+                <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>-->
         </ul>
       </nav>
       <div class="page-content">
@@ -101,7 +101,7 @@
         <footer class="footer">
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
-              <p class="no-margin-bottom">2018 &copy; JAKADesign. Diseñado por <a href="https://jakadesign.com">JAKADesign</a>.</p>
+              <p class="no-margin-bottom">{{Carbon\Carbon::now()->year}} &copy; ECONOMás. Diseñado por <a href="https://jakadesign.com">JAKADesign</a>.</p>
             </div>
           </div>
         </footer>

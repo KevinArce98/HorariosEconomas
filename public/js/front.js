@@ -72,7 +72,6 @@ $(function () {
     // ------------------------------------------------------ //
     $('.sidebar-toggle').on('click', function () {
         $(this).toggleClass('active');
-
         $('#sidebar').toggleClass('shrinked');
         $('.page-content').toggleClass('active');
         $(document).trigger('sidebarChanged');
@@ -88,6 +87,15 @@ $(function () {
         }
     });
 
+    // ------------------------------------------------------- //
+    // List Functionality
+    // ------------------------------------------------------ //
+
+    var li = $('.list-unstyled li').on('click', function () {
+         li.attr('class', 'active');
+       $('.list-unstyled li.active').attr('class', '');
+      
+    });
 
     // ------------------------------------------------------ //
     // For demo purposes, can be deleted

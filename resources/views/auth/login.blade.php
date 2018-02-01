@@ -33,11 +33,11 @@
             <!-- Logo & Information Panel-->
             <div class="col-lg-6">
               <div class="info d-flex align-items-center">
-                <div class="content">
-                  <div class="logo">
-                    <h1>Dashboard</h1>
+                <div class="content text-center">
+                  <div class="logo ">
+                    <img src="{{ asset('img/Logo-EconoMas.png') }}" alt="logoCompany" width="85%" height="20%">
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p><strong>¡Los supermercados del pueblo.!</strong></p>
                 </div>
               </div>
             </div>
