@@ -26,52 +26,33 @@
 
   </head>
   <body>
-<div class="login-page">
-      <div class="container d-flex align-items-center">
-        <div class="form-holder has-shadow">
-          <div class="row">
-            <!-- Logo & Information Panel-->
-            <div class="col-lg-6">
-              <div class="info d-flex align-items-center">
-                <div class="content text-center">
-                  <div class="logo ">
-                    <img src="{{ asset('img/Logo-EconoMas.png') }}" alt="logoCompany" width="85%" height="20%">
-                  </div>
-                  <p><strong>¡Los supermercados del pueblo.!</strong></p>
-                </div>
+    <div class="login-page">
+      <div class="container d-flex align-items-center justify-content-center">
+         <form id="login-form" role="form" method="POST" action="{{ route('login') }}" class="text-center">
+          <img src="{{ asset('img/Logo-EconoMas.png') }}" alt="logoCompany" width="350px" height="165px">
+          <h2>Ingresar</h2>
+          <hr>
+            {!! csrf_field() !!}
+              <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                <input id="login-username" type="text" name="username" required="" class="form-control">
+                <label for="login-username">Usuario</label>
+                 @if ($errors->has('username'))
+                      <span class="help-block">
+                          <strong>{{ $errors->first('username') }}</strong>
+                      </span>
+                  @endif
               </div>
-            </div>
-            <!-- Form Panel    -->
-            <div class="col-lg-6 bg-white">
-              <div class="form d-flex align-items-center">
-                <div class="content">
-                    <form id="login-form" role="form" method="POST" action="{{ route('login') }}">
-                        {!! csrf_field() !!}
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                          <input id="login-username" type="text" name="username" required="" class="input-material">
-                          <label for="login-username" class="label-material">Usuario</label>
-                           @if ($errors->has('username'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('username') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                          <input id="login-password" type="password" name="password" required="" class="input-material">
-                          <label for="login-password" class="label-material">Contraseña</label>
-                          @if ($errors->has('password'))
-                              <span class="help-block">
-                                  <strong>{{ $errors->first('password') }}</strong>
-                              </span>
-                          @endif
-                        </div>
-                        <button id="btnSignIn" type="submit" class="btn btn-primary">Ingresar</button>
-                    </form>
-                </div>
+              <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <input id="login-password" type="password" name="password" required="" class="form-control">
+                <label for="login-password" >Contraseña</label>
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
               </div>
-            </div>
-          </div>
-        </div>
+              <button id="btnSignIn" type="submit" class="btn btn-success">Ingresar</button>
+          </form>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

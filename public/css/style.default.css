@@ -1627,7 +1627,15 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
   left: 0;
   color: #fff;
 }
-
+#login-form{
+  background-color: #0392D4;
+  border-radius: 5%;
+  padding: 20px;
+  color: #fff;
+}
+#login-form hr{
+  background-color: #fff;
+}
 @media (max-width: 991px) {
   .login-page .form-holder .info,
   .login-page .form-holder .form {
@@ -1642,52 +1650,7 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 *     FORMS 
 * ==========================================================
 */
-.form-control {
-  border: 1px solid #444951;
-  background: transparent;
-  border-radius: 0;
-  color: #979a9f;
-}
 
-.form-control::-moz-placeholder {
-  font-size: 0.9rem;
-  font-family: "Muli", sans-serif;
-  color: #787b82;
-}
-
-.form-control::-webkit-input-placeholder {
-  font-size: 0.9rem;
-  font-family: "Muli", sans-serif;
-  color: #787b82;
-}
-
-.form-control:-ms-input-placeholder {
-  font-size: 0.9rem;
-  font-family: "Muli", sans-serif;
-  color: #787b82;
-}
-
-.form-control:focus {
-  color: #979a9f;
-  background-color: transparent;
-  border-color: #007BFF;
-  outline: none;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(219, 101, 116, 0.25);
-  box-shadow: 0 0 0 0.2rem rgba(219, 101, 116, 0.25);
-}
-
-.form-control:focus {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.form-control:disabled, .form-control[readonly] {
-  background: #444951;
-}
-
-.form-control-label {
-  color: #777;
-}
 
 button,
 input[type='submit'] {
@@ -1728,10 +1691,7 @@ input[type='submit'] {
   background: none !important;
 }
 
-form label {
-  font-size: 1rem;
-  color: #343434;
-}
+
 
 .checkbox-template,
 .radio-template {
