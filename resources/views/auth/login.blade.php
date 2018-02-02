@@ -37,7 +37,8 @@
                 <input id="login-username" type="text" name="username" required="" placeholder="[Usuario]" class="form-control">
                 <label class="h2font" for="login-username">Usuario</label>
                  @if ($errors->has('username'))
-                      <span class="help-block">
+                 <br>
+                      <span class="help-block text-danger">
                           <strong>{{ $errors->first('username') }}</strong>
                       </span>
                   @endif
@@ -46,7 +47,8 @@
                 <input id="login-password" type="password" name="password" required="" placeholder="[Contraseña]" class="form-control">
                 <label class="h2font" for="login-password" >Contraseña</label>
                 @if ($errors->has('password'))
-                    <span class="help-block">
+                <br>
+                    <span class="help-block text-danger">
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
                 @endif
