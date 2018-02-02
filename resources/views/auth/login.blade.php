@@ -29,13 +29,13 @@
     <div class="login-page">
       <div class="container d-flex align-items-center justify-content-center">
          <form id="login-form" role="form" method="POST" action="{{ route('login') }}" class="text-center">
-          <img src="{{ asset('img/Logo-EconoMas.png') }}" alt="logoCompany" width="350px" height="165px">
-          <h2>Ingresar</h2>
+          <img class="imglogo"src="{{ asset('img/Logo-EconoMas.png') }}" alt="logoCompany" width="350px" height="165px">
+          <h2 class="h2font">Ingresar</h2>
           <hr>
             {!! csrf_field() !!}
               <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                <input id="login-username" type="text" name="username" required="" class="form-control">
-                <label for="login-username">Usuario</label>
+                <input id="login-username" type="text" name="username" required="" placeholder="[Usuario]" class="form-control">
+                <label class="h2font" for="login-username">Usuario</label>
                  @if ($errors->has('username'))
                       <span class="help-block">
                           <strong>{{ $errors->first('username') }}</strong>
@@ -43,8 +43,8 @@
                   @endif
               </div>
               <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                <input id="login-password" type="password" name="password" required="" class="form-control">
-                <label for="login-password" >Contraseña</label>
+                <input id="login-password" type="password" name="password" required="" placeholder="[Contraseña]" class="form-control">
+                <label class="h2font" for="login-password" >Contraseña</label>
                 @if ($errors->has('password'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password') }}</strong>
