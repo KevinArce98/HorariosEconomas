@@ -53,7 +53,7 @@
                     </span>
                 @endif
               </div>
-              <button id="btnSignIn" type="submit" class="btn btn-success">Ingresar</button>
+              <button id="btnSignIn" type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Entrar</button>
           </form>
       </div>
     </div>

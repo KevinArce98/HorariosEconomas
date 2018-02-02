@@ -1630,16 +1630,15 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
   color: #fff;
 }
 #login-form{
-background: linear-gradient(to bottom, rgba(188,224,238,0.49) 0%, rgba(41,184,229,0.5) 50%, rgba(179,220,237,1) 100%);
+ background: linear-gradient(to bottom, rgba(183,235,201,0.5) 0%, rgba(112,222,157,0.6) 48%, rgba(35,207,109,0.6) 100%);
   border-radius: 5%;
   padding: 20px;
   color: #fff;
-
-
--webkit-box-shadow: 0px 5px 15px -1px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 5px 15px -1px rgba(0,0,0,0.75);
-box-shadow: 0px 5px 15px -1px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 5px 15px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 5px 15px -1px rgba(0,0,0,0.75);
+  box-shadow: 0px 5px 15px -1px rgba(0,0,0,0.75);
 }
+
 #login-form hr{
   background-color: #fff;
 }
@@ -2210,13 +2209,13 @@ STYLE SWITCHER FOR DEMO
 }
 
 .btn-warning {
-  color: color-yiq(#ffc107);
+  color: #fff;
   background-color: #ffc107;
   border-color: #ffc107;
 }
 
 .btn-warning:hover {
-  color: color-yiq(#e0a800);
+  color: #fff;
   background-color: #e0a800;
   border-color: #d39e00;
 }
@@ -2233,7 +2232,7 @@ STYLE SWITCHER FOR DEMO
 
 .btn-warning:not([disabled]):not(.disabled):active, .btn-warning:not([disabled]):not(.disabled).active,
 .show > .btn-warning.dropdown-toggle {
-  color: color-yiq(#d39e00);
+  color: #fff;
   background-color: #d39e00;
   border-color: #c69500;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
