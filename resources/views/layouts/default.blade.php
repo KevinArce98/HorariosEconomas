@@ -9,7 +9,6 @@
       <meta name="robots" content="all,follow">
       <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
     <!-- Font Awesome CSS-->
@@ -69,18 +68,10 @@
         </div>
         <!-- Sidebar Navidation Menus-->
         <ul class="list-unstyled">
-                <li class="active"><a href="{{ route('home') }}"> <i class="icon-home"></i>Principal </a></li>
-                <li><a href="#"> <i class="fa fa-calendar"></i>Horarios </a></li>
-                <li><a href="{{ route('roles.index') }}"> <i class="fa fa-list"></i>Roles </a></li>
-                <li><a href="#"> <i class="fa fa-users"></i>Usuarios </a></li>
-               <!-- <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
-                  <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                  </ul>
-                </li>
-                <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>-->
+                <li class="{{ (\Request::route()->getName() == 'home') ? 'active' : '' }}"><a href="{{ route('home') }}"> <i class="icon-home"></i>Principal </a></li>
+                <li class="{{ (\Request::route()->getName() == 'schedules.index') ? 'active' : '' }}"><a href="#"> <i class="fa fa-calendar"></i>Horarios </a></li>
+                <li class="{{ (\Request::route()->getName() == 'roles.index') ? 'active' : '' }}"><a href="{{ route('roles.index') }}"> <i class="fa fa-list"></i>Roles </a></li>
+                <li class="{{ (\Request::route()->getName() == 'users.index') ? 'active' : '' }}"><a href="#"> <i class="fa fa-users"></i>Usuarios </a></li>
         </ul>
       </nav>
       <div class="page-content">

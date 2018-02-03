@@ -49,19 +49,4 @@ $(function () {
         }
     });
 
-    // ------------------------------------------------------- //
-    // List Functionality
-    // ------------------------------------------------------ //
-    function addEvents() {
-        $('.list-unstyled li').each(function( index ) {
-            this.addEventListener('click', function(event) {
-                if ($(".list-unstyled li.active").length > 0) {
-                    var element = $(".list-unstyled li.active");
-                    element[0].removeAttribute("class");
-                }  
-              event['currentTarget'].setAttribute("class", "active");
-            }, true);
-        });   
-    }
-    addEvents();
 });
