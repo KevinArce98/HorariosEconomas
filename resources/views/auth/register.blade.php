@@ -1,6 +1,15 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+    </title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    
 
-@section('content')
 <div class="container">
     <div class="row justify-content-md-center mt-5">
         <div class="col-md-8">
@@ -110,4 +119,7 @@
         </div>
     </div>
 </div>
-@endsection
+
+
+</body>
+</html>

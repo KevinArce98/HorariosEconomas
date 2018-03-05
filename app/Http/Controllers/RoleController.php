@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 
+
 class RoleController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('roles.index');
+        $roles = Role::all();
+        return view('roles.index', compact('roles'));
     }
 
     /**
@@ -24,7 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
     /**
@@ -35,7 +37,17 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // Validations
+        $validatedData = $request->validate([
+             'name' => 'required|string',
+             'display_name' => 'required|string',
+             'description' => 'required|string'
+        ]);
+
+        //Save Model Role
+        Role::create($request->all());
+
+        return redirect()->back();
     }
 
     /**
@@ -44,7 +56,7 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show($id)
     {
         //
     }
@@ -55,7 +67,7 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
         //
     }
@@ -67,18 +79,28 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function delete($id)
+    {
+        $role = Role::find($id);
+        return view('roles.delete', compact('role'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Role  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
         //
     }
