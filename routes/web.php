@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('roles', 'RoleController');
+Route::get('/roles/{id}/delete', 'RoleController@delete')->name('roles.delete');
 
