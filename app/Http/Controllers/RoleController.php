@@ -40,7 +40,6 @@ class RoleController extends Controller
          // Validations
         $validatedData = $request->validate([
              'name' => 'required|string',
-             'display_name' => 'required|string',
              'description' => 'required|string'
         ]);
 
@@ -102,6 +101,6 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "eliminado";
     }
 }

@@ -18,13 +18,10 @@
 	@endif
 <form action="{{ route('roles.store') }}" method="POST" role="form">
 	{{ csrf_field() }}
+	
 	<div class="form-group">
 		<label for="name" class="control-label">Nombre:</label>
 		<input type="text" class="form-control" id="name" placeholder="Nombre" name="name" required autofocus>
-	</div>
-	<div class="form-group">
-		<label for="display_name" class="control-label">Nombre a Mostrar:</label>
-		<input type="text" class="form-control" id="display_name" placeholder="Nombre a Mostrar"  name="display_name" required>
 	</div>
 	<div class="form-group">
 		<label for="description" class="control-label">Descripción</label>

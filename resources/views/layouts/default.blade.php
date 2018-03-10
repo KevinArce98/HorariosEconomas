@@ -66,12 +66,13 @@
             <p>Diseñador Web</p>
           </div>
         </div>
+
         <!-- Sidebar Navidation Menus-->
         <ul class="list-unstyled">
-                <li class="{{ (\Request::route()->getName() == 'home') ? 'active' : '' }}"><a href="{{ route('home') }}"> <i class="icon-home"></i>Principal </a></li>
-                <li class="{{ (\Request::route()->getName() == 'schedules.index') ? 'active' : '' }}"><a href="#"> <i class="fa fa-calendar"></i>Horarios </a></li>
-                <li class="{{ (\Request::route()->getName() == 'roles.index') ? 'active' : '' }}"><a href="{{ route('roles.index') }}"> <i class="fa fa-list"></i>Roles </a></li>
-                <li class="{{ (\Request::route()->getName() == 'users.index') ? 'active' : '' }}"><a href="#"> <i class="fa fa-users"></i>Usuarios </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'home') !== false ) ? 'active' : '' }}"><a href="{{ route('home') }}"> <i class="icon-home"></i>Principal </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'Schedule') !== false ) ? 'active' : '' }}"><a href="#"> <i class="fa fa-calendar"></i>Horarios </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'roles') !== false ) ? 'active' : '' }}"><a href="{{ route('roles.index') }}"> <i class="fa fa-list"></i>Roles </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'users') !== false ) ? 'active' : '' }}"><a href="#"> <i class="fa fa-users"></i>Usuarios </a></li>
         </ul>
       </nav>
       <div class="page-content">

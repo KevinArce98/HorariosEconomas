@@ -14,7 +14,6 @@
     		<thead>
     			<tr>
     				<th>Nombre</th>
-    				<th>Nombre a Mostrar</th>
     				<th>Descripción</th>
     				<th>Acciones</th>
     			</tr>
@@ -23,7 +22,6 @@
     			@forelse($roles as $rol)
 					<tr>
 	    				<td>{{ $rol->name }}</td>
-	    				<td>{{ $rol->display_name }}</td>
 	    				<td>{{ $rol->description }}</td>
 	    				<td>
 	    					<a href="{{ route('roles.show', $rol->id) }}" class="btn-sm btn-success"><i class="fa fa-eye"></i></a>
