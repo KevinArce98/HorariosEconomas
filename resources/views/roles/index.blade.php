@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class=" container text-right mb-2">
-    	<a href="{{ route('roles.create') }}" class="btn btn-success">Crear Rol</a>
+    	<a href="{{ route('roles.create') }}" class="btn btn-success">Crear Nuevo</a>
     </div>
     <div class="d-flex justify-content-center">
     	<table class="table table-light table-hover text-center">

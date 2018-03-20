@@ -18,7 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::resource('markets', 'MarketController');
+Route::get('/markets/{id}/delete', 'MarketController@delete')->name('markets.delete');
 Route::resource('roles', 'RoleController');
 Route::get('/roles/{id}/delete', 'RoleController@delete')->name('roles.delete');
 

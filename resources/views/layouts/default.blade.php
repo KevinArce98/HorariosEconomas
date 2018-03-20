@@ -36,7 +36,7 @@
             <li class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="fa fa-envelope-o fa-1x"></i><span class="badge dashbg-1">1</span></a>
               <ul aria-labelledby="navbarDropdownMenuLink1" class="dropdown-menu messages">
                 <li><a href="#" class="dropdown-item message d-flex align-items-center">
-                    <div class="profile"><img src="img/avatar-5.jpg" alt="..." class="img-fluid">
+                    <div class="profile"><img src="../../img/avatar-5.jpg" alt="..." class="img-fluid">
                       <div class="status offline"></div>
                     </div>
                     <div class="content">   <strong class="d-block">Sara Wood</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">10:30pm</small></div></a></li>
@@ -60,7 +60,7 @@
       <nav id="sidebar">
         <!-- Sidebar Header-->
         <div id="left-media" class="sidebar-header d-flex align-items-center">
-          <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
+          <div class="avatar"><img src="../../img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
           <div class="title">
             <h1 class="h5">{{ auth()->user()->username }}</h1>
             <p>Diseñador Web</p>
@@ -71,8 +71,10 @@
         <ul class="list-unstyled">
                 <li class="{{ (strpos(\Request::route()->getName(), 'home') !== false ) ? 'active' : '' }}"><a href="{{ route('home') }}"> <i class="icon-home"></i>Principal </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'Schedule') !== false ) ? 'active' : '' }}"><a href="#"> <i class="fa fa-calendar"></i>Horarios </a></li>
-                <li class="{{ (strpos(\Request::route()->getName(), 'roles') !== false ) ? 'active' : '' }}"><a href="{{ route('roles.index') }}"> <i class="fa fa-list"></i>Roles </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'market') !== false ) ? 'active' : '' }}"><a href="{{ route('markets.index') }}"> <i class="fa fa-shopping-cart"></i>Puntos de Venta </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'position') !== false ) ? 'active' : '' }}"><a href="{{ route('roles.index') }}"> <i class="fa fa-id-card"></i>Puestos </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'users') !== false ) ? 'active' : '' }}"><a href="#"> <i class="fa fa-users"></i>Usuarios </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'roles') !== false ) ? 'active' : '' }}"><a href="{{ route('roles.index') }}"> <i class="fa fa-list"></i>Roles </a></li>
         </ul>
       </nav>
       <div class="page-content">
