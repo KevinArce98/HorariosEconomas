@@ -37,7 +37,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+    
     /**
      * Get the needed authorization credentials from the request.
      *
