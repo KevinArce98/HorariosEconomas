@@ -3,7 +3,7 @@
 @section('content')
     <div class="page-header">
       <div class="container-fluid">
-        <h2 class="h5 no-margin-bottom">Roles de Usuario</h2>
+        <h2 class="h5 no-margin-bottom">Puestos de Usuario</h2>
       </div>
     </div>
     <div class=" container text-right mb-2">
@@ -14,19 +14,21 @@
     		<thead>
     			<tr>
     				<th>Nombre</th>
-    				<th>Descripción</th>
+					<th>Descripción</th>
+					<th>Paga por Hora</th>
     				<th>Acciones</th>
     			</tr>
     		</thead>
     		<tbody>
-    			@forelse($roles as $rol)
+    			@forelse($positions as $position)
 					<tr>
-	    				<td>{{ $rol->name }}</td>
-	    				<td>{{ $rol->description }}</td>
+	    				<td>{{ $position->name }}</td>
+						<td>{{ $position->description }}</td>
+						<td>{{ $position->payforhour }}</td>
 	    				<td>
-	    					<a href="{{ route('roles.show', $rol->id) }}" class="btn-sm btn-success"><i class="fa fa-eye"></i></a>
-	    					<a href="{{ route('roles.edit', $rol->id) }}" class="btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
-	    					<a href="{{ route('roles.delete', $rol->id) }}" class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+	    					<a href="{{ route('position.show', $position->id) }}" class="btn-sm btn-success"><i class="fa fa-eye"></i></a>
+	    					<a href="{{ route('position.edit', $position->id) }}" class="btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+	    					<a href="{{ route('position.delete', $position->id) }}" class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 	    				</td>
 	    			</tr>
     			@empty
