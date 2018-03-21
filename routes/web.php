@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('user.login');
 });
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -23,8 +23,13 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('r
 Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::resource('markets', 'MarketController');
 Route::get('/markets/{id}/delete', 'MarketController@delete')->name('markets.delete');
+
 Route::resource('roles', 'RoleController');
 Route::get('/roles/{id}/delete', 'RoleController@delete')->name('roles.delete');
+
+Route::resource('positions', 'PositionController');
+Route::get('/positions/{id}/delete', 'PositionController@delete')->name('positions.delete');
 
