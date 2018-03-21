@@ -45,7 +45,7 @@
             </li>
             <li class="list-inline-item logout">                   
              
-              <a id="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout <i class="fa fa-sign-out"></i></a>
+              <a id="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión <i class="fa fa-sign-out"></i></a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
@@ -73,7 +73,7 @@
                 <li class="{{ (strpos(\Request::route()->getName(), 'Schedule') !== false ) ? 'active' : '' }}"><a href="#"> <i class="fa fa-calendar"></i>Horarios </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'market') !== false ) ? 'active' : '' }}"><a href="{{ route('markets.index') }}"> <i class="fa fa-shopping-cart"></i>Puntos de Venta </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'position') !== false ) ? 'active' : '' }}"><a href="{{ route('roles.index') }}"> <i class="fa fa-id-card"></i>Puestos </a></li>
-                <li class="{{ (strpos(\Request::route()->getName(), 'users') !== false ) ? 'active' : '' }}"><a href="#"> <i class="fa fa-users"></i>Usuarios </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'users') !== false ) ? 'active' : '' }}"><a href=""> <i class="fa fa-users"></i>Usuarios </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'roles') !== false ) ? 'active' : '' }}"><a href="{{ route('roles.index') }}"> <i class="fa fa-list"></i>Roles </a></li>
         </ul>
       </nav>
