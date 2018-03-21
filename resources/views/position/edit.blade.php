@@ -16,17 +16,17 @@
 			</ul>
 		</div>
 	@endif
-<form action="{{ route('position.update', $role->id) }}" method="POST" role="form">
+<form action="{{ route('position.update', $position->id) }}" method="POST" role="form">
 	{{ csrf_field() }}
 	{{ method_field('PATCH') }}
 	
 	<div class="form-group">
 		<label for="name" class="control-label">Nombre:</label>
-		<input type="text" class="form-control" id="name" value="{{ $role->name }}" name="name" required autofocus>
+		<input type="text" class="form-control" id="name" value="{{ $position->name }}" name="name" required autofocus>
 	</div>
 	<div class="form-group">
 		<label for="description" class="control-label">Descripción</label>
-        <input type="text" class="form-control" id="description" value="{{ $role->description }}"  name="description" required>
+        <input type="text" class="form-control" id="description" value="{{ $position->description }}"  name="description" required>
 	</div>
 	<div class="form-group">
 		<label for="description" class="control-label">Paga por hora</label>
