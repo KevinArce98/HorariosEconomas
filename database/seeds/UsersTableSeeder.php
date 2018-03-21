@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,7 +13,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('users')->insert([
+    	DB::table('roles')->insert([
+            'name' => "admin",
+            'description' => "admin",
+        ]);
+        DB::table('positions')->insert([
+            'name' => "cajero",
+            'description' => "cajero",
+            'payforhour' => 1500,
+        ]);
+        DB::table('users')->insert([
             'name' => "admin",
             'phone' => "admin",
             'role_id' => 1,

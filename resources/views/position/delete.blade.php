@@ -17,7 +17,7 @@
     		{{ csrf_field() }}
     		{{ method_field('DELETE') }}
     		<button type="submit" class="btn btn-danger">Eliminar</button> <span class="text-light">|</span> 
-			<a href="{{route('position.index')}}" class="btn btn-warning">Volver a la lista</a>
+			<a href="{{route('positions.index')}}" class="btn btn-warning">Volver a la lista</a>
     	</form>
     </div>
 @endsection

@@ -91,7 +91,7 @@ class PositionController extends Controller
      * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Position $position)
+    public function update(Request $request, $id)
     {
          // Validations
          $validatedData = $request->validate([
