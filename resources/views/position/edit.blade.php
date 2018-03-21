@@ -16,7 +16,7 @@
 			</ul>
 		</div>
 	@endif
-<form action="{{ route('position.update', $position->id) }}" method="POST" role="form">
+<form action="{{ route('positions.update', $position->id) }}" method="POST" role="form">
 	{{ csrf_field() }}
 	{{ method_field('PATCH') }}
 	
@@ -34,7 +34,7 @@
 	</div>
 	<div class="form-group text-right">
 		<button type="submit" class="btn btn-success">Guardar</button> | 
-		<a href="{{route('position.index')}}" class="btn btn-warning">Volver a la lista</a>
+		<a href="{{route('positions.index')}}" class="btn btn-warning">Volver a la lista</a>
 	</div>
 </form>
 

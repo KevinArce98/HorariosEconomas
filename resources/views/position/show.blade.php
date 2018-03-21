@@ -20,7 +20,7 @@
         <input type="text" class="form-control" id="payforhour" value="{{ $position->payforhour }}" readonly>
 	</div>
 	<div class="form-group text-right">
-		<a href="{{route('position.index')}}" class="btn btn-warning">Volver a la lista</a>
+		<a href="{{route('positions.index')}}" class="btn btn-warning">Volver a la lista</a>
 	</div>
 
 </div>

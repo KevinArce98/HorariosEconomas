@@ -13,7 +13,7 @@
     		<hr>
     		<label for="description">Descripción:</label><input class="form-control" type="text" name="description" value="{{ $position->description }}" readonly="">
     	</div>
-    	<form action="{{ route('position.destroy', $position->id) }}" method="POST" accept-charset="utf-8">
+    	<form action="{{ route('positions.destroy', $position->id) }}" method="POST" accept-charset="utf-8">
     		{{ csrf_field() }}
     		{{ method_field('DELETE') }}
     		<button type="submit" class="btn btn-danger">Eliminar</button> <span class="text-light">|</span> 

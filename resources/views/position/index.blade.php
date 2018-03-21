@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class=" container text-right mb-2">
-    	<a href="{{ route('position.create') }}" class="btn btn-success">Crear Nuevo</a>
+    	<a href="{{ route('positions.create') }}" class="btn btn-success">Crear Nuevo</a>
     </div>
     <div class="d-flex justify-content-center">
     	<table class="table table-light table-hover text-center">
@@ -26,9 +26,9 @@
 						<td>{{ $position->description }}</td>
 						<td>{{ $position->payforhour }}</td>
 	    				<td>
-	    					<a href="{{ route('position.show', $position->id) }}" class="btn-sm btn-success"><i class="fa fa-eye"></i></a>
-	    					<a href="{{ route('position.edit', $position->id) }}" class="btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
-	    					<a href="{{ route('position.delete', $position->id) }}" class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+	    					<a href="{{ route('positions.show', $position->id) }}" class="btn-sm btn-success"><i class="fa fa-eye"></i></a>
+	    					<a href="{{ route('positions.edit', $position->id) }}" class="btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+	    					<a href="{{ route('positions.delete', $position->id) }}" class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
 	    				</td>
 	    			</tr>
     			@empty
