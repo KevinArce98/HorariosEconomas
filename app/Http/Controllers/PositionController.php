@@ -24,7 +24,8 @@ class PositionController extends Controller
      */
     public function index()
     {
-        //
+        $positions = Role::all();
+        return view('position.index', compact('positions'));
     }
 
     /**
@@ -34,7 +35,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('position.create');
     }
 
     /**
@@ -45,7 +46,18 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validations
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'payforhour' => 'required'
+       ]);
+
+       //Save Model Position
+       Position::create($request->all());
+
+        $positions = Position::all();
+       return view('position.index', compact('positions'));
     }
 
     /**
@@ -54,9 +66,10 @@ class PositionController extends Controller
      * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function show(Position $position)
+    public function show($id)
     {
-        //
+        $position = Position::find($id);
+        return view('position.show', compact('position'));
     }
 
     /**
@@ -65,9 +78,10 @@ class PositionController extends Controller
      * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function edit(Position $position)
+    public function edit($id)
     {
-        //
+        $position = Position::find($id);
+        return view('position.edit', compact('position'));
     }
 
     /**
@@ -79,7 +93,21 @@ class PositionController extends Controller
      */
     public function update(Request $request, Position $position)
     {
-        //
+         // Validations
+         $validatedData = $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'payforhour' => 'required'
+       ]);
+
+       $position = Position::find($id);
+       $position->name = $request['name'];
+       $position->description = $request['description'];
+       $position->payforhour = $request['payforhour'];
+       $position->save();
+
+       $positions = Position::all();
+       return view('position.index', compact('positions'));
     }
 
     /**
@@ -88,8 +116,24 @@ class PositionController extends Controller
      * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Position $position)
+    public function destroy($id)
     {
-        //
+        $position = Position::find($id);
+        $position->delete();
+
+        $positions = Position::all();
+        return view('position.index', compact('positions'));
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Position  $position
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $position = Position::find($id);
+        return view('position.delete', compact('position'));
     }
 }
