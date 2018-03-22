@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
+use App\Position;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -54,7 +59,7 @@ class RegisterController extends Controller
             'role_id' => 'required',
             'position_id' => 'required',
             'username' => 'required|string|max:20|unique:users',
-            'email' => 'string|email|max:255',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -67,7 +72,9 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('user.register');
+        $positions = Position::all();
+        $roles = Role::all();
+        return view('user.create', compact('roles', 'positions'));
     }
 
     /**
@@ -78,14 +85,13 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
+
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+        $users = User::all();
+        return view('user.index', compact('users'));
     }
 
 
@@ -97,6 +103,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $image = $data['avatar'];
+        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/img/users');
+        $image->move($destinationPath, $input['imagename']);
+
+        $avatar = "/img/users/" . $input['imagename'];
         return User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
@@ -104,7 +117,7 @@ class RegisterController extends Controller
             'role_id' => $data['role_id'],
             'position_id' => $data['position_id'],
             'username' => $data['username'],
-            'email' => $data['email'],
+            'avatar' => $avatar,
             'password' => bcrypt($data['password']),
         ]);
     }

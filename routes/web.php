@@ -20,7 +20,7 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/register/create', 'Auth\RegisterController@register')->name('register.create');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -33,3 +33,5 @@ Route::get('/roles/{id}/delete', 'RoleController@delete')->name('roles.delete');
 Route::resource('positions', 'PositionController');
 Route::get('/positions/{id}/delete', 'PositionController@delete')->name('positions.delete');
 
+Route::resource('users', 'UserController');
+Route::get('/users/{id}/delete', 'UserController@delete')->name('users.delete');
