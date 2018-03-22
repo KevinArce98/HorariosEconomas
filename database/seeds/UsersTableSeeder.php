@@ -30,6 +30,7 @@ class UsersTableSeeder extends Seeder
             'lastname' => "admin",
             'username' => "admin",
             'email' => str_random(10).'@gmail.com',
+            'avatar' => "https://s25.postimg.org/4dmmf6rkv/avatar_blanco.png",
             'password' => bcrypt('123456'),
         ]);
     }

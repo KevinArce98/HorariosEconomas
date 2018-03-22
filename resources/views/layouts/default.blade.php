@@ -28,21 +28,12 @@
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header"><a href="{{ route('home')}}" class="navbar-brand">
-              <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">PORRAS</strong><strong>UGALDE</strong></div>
-              <div class="brand-text brand-sm"><strong class="text-primary">P</strong><strong>U</strong></div></a>
+              <div class="brand-text brand-big visible text-uppercase"><strong class="text-success">Econo</strong><strong class="text-danger">Más</strong></div>
+              <div class="brand-text brand-sm"><strong class="text-success">E</strong><strong class="text-danger">M</strong></div></a>
             <button class="sidebar-toggle"><i class="fa fa-bars"></i></button>
           </div>
           <ul class="right-menu list-inline no-margin-bottom">    
-            <li class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="fa fa-envelope-o fa-1x"></i><span class="badge dashbg-1">1</span></a>
-              <ul aria-labelledby="navbarDropdownMenuLink1" class="dropdown-menu messages">
-                <li><a href="#" class="dropdown-item message d-flex align-items-center">
-                    <div class="profile"><img src="../../img/avatar-5.jpg" alt="..." class="img-fluid">
-                      <div class="status offline"></div>
-                    </div>
-                    <div class="content">   <strong class="d-block">Sara Wood</strong><span class="d-block">lorem ipsum dolor sit amit</span><small class="date d-block">10:30pm</small></div></a></li>
-                <li><a href="#" class="dropdown-item text-center message"> <strong>See All Messages <i class="fa fa-angle-right"></i></strong></a></li>
-              </ul>
-            </li>
+           
             <li class="list-inline-item logout">                   
              
               <a id="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión <i class="fa fa-sign-out"></i></a>
@@ -60,10 +51,10 @@
       <nav id="sidebar">
         <!-- Sidebar Header-->
         <div id="left-media" class="sidebar-header d-flex align-items-center">
-          <div class="avatar"><img src="../../img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
+          <div class="avatar"><img src="{{ auth()->user()->avatar }}" alt="avatar" class="img-fluid rounded-circle"></div>
           <div class="title">
             <h1 class="h5">{{ auth()->user()->username }}</h1>
-            <p>Diseñador Web</p>
+            <p>{{ auth()->user()->position->name }}</p>
           </div>
         </div>
 

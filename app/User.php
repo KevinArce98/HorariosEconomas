@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Role;
+use App\Position;
 
 class User extends Authenticatable
 {
@@ -15,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'lastname', 'phone', 'role_id', 'position_id', 'email', 'password', 'username',
+        'name', 'lastname', 'phone', 'role_id', 'position_id', 'email', 'password', 'username', 'avatar',
     ];
 
     /**
@@ -26,4 +28,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+    
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRoles(['admin']);
+    }
 }
