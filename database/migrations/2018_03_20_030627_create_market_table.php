@@ -18,6 +18,7 @@ class CreateMarketTable extends Migration
             $table->string('name')->unique();
             $table->text('location');
             $table->text('description')->nullable();
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }

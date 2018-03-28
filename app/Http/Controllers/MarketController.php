@@ -45,14 +45,24 @@ class MarketController extends Controller
      */
     public function store(Request $request)
     {
+
           // Validations
         $validatedData = $request->validate([
              'name' => 'required|string',
              'location' => 'required|string',
-             'description' => 'required|string'
+             'description' => 'string',
+             'picture' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
-         
-        Market::create($request->all());
+        $data = $request->all();
+
+        $image = $request['picture'];
+        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/img/markets');
+        $image->move($destinationPath, $input['imagename']);
+
+        $avatar = "/img/markets/" . $input['imagename'];
+        $data['picture'] = $avatar;
+        Market::create($data);
 
         $markets = Market::all();
         return view('market.index', compact('markets'));
@@ -95,12 +105,24 @@ class MarketController extends Controller
         $validatedData = $request->validate([
              'name' => 'required|string',
              'location' => 'required|string',
-             'description' => 'required|string'
+             'description' => 'required|string',
+             'picture' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
+
+        
+
         $market = Market::find($id);
         $market->name = $request['name'];
         $market->description = $request['description'];
         $market->location = $request['location'];
+        if (isset($request['picture'])) {
+            $image = $request['picture'];
+            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/img/markets');
+            $image->move($destinationPath, $input['imagename']);
+            $avatar = "/img/markets/" . $input['imagename'];
+           $market->picture = $avatar;
+        }
         $market->save();
 
         $markets = Market::all();

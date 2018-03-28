@@ -12,7 +12,7 @@ class Market extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'location', 'description',
+        'name', 'location', 'description', 'picture'
     ];
 
     /**

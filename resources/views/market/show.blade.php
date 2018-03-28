@@ -19,6 +19,12 @@
 		<label for="description" class="control-label">Descripción</label>
         <input type="text" class="form-control" id="description" placeholder="Descripción" value="{{ $market->description }}" readonly>
 	</div>
+	 <div class="form-group row">
+            <label class="col-lg-4 col-form-label text-lg-right">Foto</label>
+            <div class="col-lg-6">
+                <img class="col-sm-6"  src="{{ $market->picture }}" ></img>
+            </div>
+        </div>
 	<div class="form-group text-right">
 		<a href="{{route('markets.index')}}" class="btn btn-warning">Volver a la lista</a>
 	</div>
