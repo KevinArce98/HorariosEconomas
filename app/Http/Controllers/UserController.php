@@ -79,6 +79,11 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
 
+    public function delete($id)
+    {
+        $user = User::findOrFail($id);
+        return view('user.delete', compact('user'));
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -87,7 +92,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        $users = User::all();
+        return view('user.index', compact('users'));
     }
 
     protected function validator(array $data)
