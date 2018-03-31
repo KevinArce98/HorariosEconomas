@@ -37,3 +37,4 @@ Route::resource('users', 'UserController');
 Route::get('/users/{id}/delete', 'UserController@delete')->name('users.delete');
 
 Route::resource('schedules', 'ScheduleController');
+Route::get('/schedules/market/week', 'ScheduleController@selectMarketWeek')->name('schedules.select');

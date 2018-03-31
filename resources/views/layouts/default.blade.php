@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="{{ asset('css/style.default.css') }}" id="theme-stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" id="theme-main-stylesheet">
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
 

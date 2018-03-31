@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Schedule;
+use App\Market;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -14,7 +15,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return view('schedules.index');
+        $markets = Market::all();
+        return view('schedules.index', compact('markets'));
     }
 
     /**
@@ -25,6 +27,12 @@ class ScheduleController extends Controller
     public function create()
     {
         //
+    }
+
+    public function selectMarketWeek()
+    {
+        $markets = Market::all();
+        return view('schedules.selectWeek', compact('markets'));
     }
 
     /**
