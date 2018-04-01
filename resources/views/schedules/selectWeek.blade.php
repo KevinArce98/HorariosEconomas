@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@section('styles')
+<link href="{{ asset('css/jquery-ui-datepicker.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="page-header">
 	<div class="container-fluid">
@@ -22,14 +26,10 @@
 	    <div class="form-group row">
 	        <label class="col-lg-4 col-form-label text-lg-right">Semana</label>
 	        <div class="col-md-3">
-	            <select class="form-control" id="market" name="market">
-	                @foreach($markets as $market)
-	                    <option value="{{ $market->id }}">{{ $market->name }}</option>
-	                @endforeach
-	            </select>
+	            <div id="datepicker"></div>
 	        </div>
 	        <div class="col-md-3">
-	            <select class="form-control" id="market" name="market">
+	      	      <select class="form-control" id="market" name="market">
 	                @foreach($markets as $market)
 	                    <option value="{{ $market->id }}">{{ $market->name }}</option>
 	                @endforeach
@@ -38,4 +38,14 @@
 	    </div>
 	</form>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/jquery-ui-datepicker.min.js') }}"></script>
+<script>
+$( "#datepicker" ).datepicker({
+	inline: true
+});
+
+</script>
 @endsection

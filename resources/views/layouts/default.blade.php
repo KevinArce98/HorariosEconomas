@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" id="theme-main-stylesheet">
     <!-- Favicon-->
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
-
+    @yield('styles')
   </head>
   <body>
     <header class="header">   
@@ -84,8 +84,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"> </script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery.cookie/jquery.cookie.js') }}"> </script>
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('js/front.js') }}"></script>
+    @yield('scripts')
   </body>
 </html>
