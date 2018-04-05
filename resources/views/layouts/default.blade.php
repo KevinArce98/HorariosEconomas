@@ -62,7 +62,7 @@
         <!-- Sidebar Navidation Menus-->
         <ul class="list-unstyled">
                 <li class="{{ (strpos(\Request::route()->getName(), 'home') !== false ) ? 'active' : '' }}"><a href="{{ route('home') }}"> <i class="icon-home"></i>Principal </a></li>
-                <li class="{{ (strpos(\Request::route()->getName(), 'Schedule') !== false ) ? 'active' : '' }}"><a href="{{ route('schedules.index') }}"> <i class="fa fa-calendar"></i>Horarios </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'schedules') !== false ) ? 'active' : '' }}"><a href="{{ route('schedules.index') }}"> <i class="fa fa-calendar"></i>Horarios </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'market') !== false ) ? 'active' : '' }}"><a href="{{ route('markets.index') }}"> <i class="fa fa-shopping-cart"></i>Puntos de Venta </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'position') !== false ) ? 'active' : '' }}"><a href="{{ route('positions.index') }}"> <i class="fa fa-id-card"></i>Puestos </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'users') !== false ) ? 'active' : '' }}"><a href="{{ route('users.index') }}"> <i class="fa fa-users"></i>Usuarios </a></li>

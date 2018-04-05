@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Schedule;
 use App\Market;
+use App\Week;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -24,15 +26,26 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($week)
     {
-        //
+        dd($week);
     }
 
     public function selectMarketWeek()
     {
-        $markets = Market::all();
-        return view('schedules.selectWeek', compact('markets'));
+        $weeks = Week::all();
+        return view('schedules.selectWeek', compact('weeks'));
+    }
+
+    public function storeWeek(Request $request)
+    {
+        
+        $week = new Week;
+        $week->from = $week->convertToSQL($request['from']);
+        $week->to = $week->convertToSQL($request['to']);
+        $week->number = $this->numberWeek($request['from']);
+        $week->save();
+        return redirect()->route('schedules.create', $week->id);
     }
 
     /**
@@ -89,5 +102,11 @@ class ScheduleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function numberWeek($dateString)
+    {
+        $now = Carbon::createFromFormat('d/m/Y', $dateString);
+        return $now->weekOfYear;
     }
 }
