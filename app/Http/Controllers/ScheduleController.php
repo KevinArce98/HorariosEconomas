@@ -7,9 +7,19 @@ use App\Market;
 use App\Week;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use \Illuminate\Support\MessageBag;
 
 class ScheduleController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+       $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,31 +31,47 @@ class ScheduleController extends Controller
         return view('schedules.index', compact('markets'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($week)
+    public function create($week, $market)
     {
-        dd($week);
+        $week = Week::findOrFail($week);
+        $market = Market::findOrFail($market);
+        return view('schedules.create', compact('week', 'market'));
+    }
+    
+    public function selectMarket($week)
+    {
+        $markets = Market::all();
+        $week = Week::findOrFail($week);
+        return view('schedules.selectMarket', compact('week', 'markets'));
     }
 
     public function selectMarketWeek()
     {
-        $weeks = Week::all();
+        $weeks = Week::orderBy('number')->get();
         return view('schedules.selectWeek', compact('weeks'));
+    }
+
+    public function selectedWeek(Request $request)
+    {
+        return redirect()->route('schedules.selectMarket', $request->week); 
     }
 
     public function storeWeek(Request $request)
     {
-        
-        $week = new Week;
-        $week->from = $week->convertToSQL($request['from']);
-        $week->to = $week->convertToSQL($request['to']);
-        $week->number = $this->numberWeek($request['from']);
-        $week->save();
-        return redirect()->route('schedules.create', $week->id);
+        $numerOfWeek = $this->numberWeek($request['from']);
+        $response = Week::where('number', '=', $numerOfWeek)->first();
+        if (!isset($response)) {
+            $week = new Week;
+            $week->from = $week->convertToSQL($request['from']);
+            $week->to = $week->convertToSQL($request['to']);
+            $week->number = $numerOfWeek;
+            $week->save();
+        }else { 
+            $errors = new MessageBag();
+            $errors->add('numerOfWeek', 'La semana selecionada ya ha sido creada, por favor selecione otra.');
+            return redirect()->back()->with(compact('errors')); 
+        }
+        return redirect()->route('schedules.selectMarket', $week->id); 
     }
 
     /**
@@ -102,6 +128,11 @@ class ScheduleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function makeUrl(Request $request)
+    {
+        return redirect()->route('schedules.create', ['week' => $request->week, 'market'=>$request->market]); 
     }
 
     private function numberWeek($dateString)

@@ -11,8 +11,17 @@
 	</div>
 </div>
 <div class="container" style="color: white;">
+  @if($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+      </ul>
+    </div>
+  @endif
 	@if(count($weeks) != 0)
-  	<form action="" method="get" accept-charset="utf-8">
+  	<form action="{{ route('week.selected') }}" method="post" accept-charset="utf-8">
       {{ csrf_field() }}
        <h3>Seleccionar Semana</h3>
   		 <div class="form-group row">

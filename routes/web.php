@@ -37,7 +37,10 @@ Route::resource('users', 'UserController');
 Route::get('/users/{id}/delete', 'UserController@delete')->name('users.delete');
 
 Route::get('/schedules/week', 'ScheduleController@selectMarketWeek')->name('schedules.select');
-Route::get('/schedules', 'ScheduleController@index ')->name('schedules.index');
-Route::get('/schedules/create/{week}', 'ScheduleController@create')->name('schedules.create');
+Route::get('/schedules', 'ScheduleController@index')->name('schedules.index');
+Route::get('/schedules/week/{week}', 'ScheduleController@selectMarket')->name('schedules.selectMarket');
 
 Route::post('/week/create', 'ScheduleController@storeWeek')->name('week.store');
+Route::post('/week/selected', 'ScheduleController@selectedWeek')->name('week.selected');
+Route::post('/make/url/schedules', 'ScheduleController@makeUrl')->name('schedules.makeUrl');
+Route::get('week/{week}/market/{market}/schedules/create', 'ScheduleController@create')->name('schedules.create');
