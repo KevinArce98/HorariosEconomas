@@ -30,7 +30,7 @@ class Week extends Model
         return \DateTime::createFromFormat('Y-m-d', $date)->format('d/m/Y');
     }
 
-    public function convertToSQL($date){
+    public static function convertToSQL($date){
           $date = \DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
           return $date;
     }
