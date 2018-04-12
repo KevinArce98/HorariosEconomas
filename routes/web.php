@@ -41,3 +41,6 @@ Route::post('/week/selected', 'ScheduleController@selectedWeek')->name('week.sel
 Route::post('/week/create', 'ScheduleController@storeWeek')->name('week.store');
 Route::get('/schedules', 'ScheduleController@index')->name('schedules.index');
 Route::get('week/{week}/schedules/create', 'ScheduleController@create')->name('schedules.create');
+Route::post('schedules/store','ScheduleController@storeSchedule')->name('schedules.store');
+
+Route::resource('hours', 'HourController');

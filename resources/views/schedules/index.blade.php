@@ -16,7 +16,7 @@
     	<a href="#">
 			<div class="card" style="width: 18rem;">
 			<h4 class="p-1 text-center text-primary">{{ $market->name }}</h4>
-			  <img class="card-img-top" src="{{ $market->picture }}" alt="{{ $market->description }}">
+			  <img class="card-img-top" src="{{ $market->picture }}" alt="{{ $market->description }}" width="286px" height="160px">
 			  <div class="card-body">
 			    <p class="card-text">{{ $market->description }}</p>
 			  </div>

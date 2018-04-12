@@ -18,13 +18,13 @@ class CreateTableSchedules extends Migration
             $table->integer('user_id');
             $table->integer('market_id');
             $table->integer('week_id');
-            $table->integer('lunes');
-            $table->integer('martes');
-            $table->integer('miercoles');
-            $table->integer('jueves');
-            $table->integer('viernes');
-            $table->integer('sabado');
-            $table->integer('domingo');
+            $table->integer('lunes')->nullable();
+            $table->integer('martes')->nullable();
+            $table->integer('miercoles')->nullable();
+            $table->integer('jueves')->nullable();
+            $table->integer('viernes')->nullable();
+            $table->integer('sabado')->nullable();
+            $table->integer('domingo')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('market_id')->references('id')->on('markets');

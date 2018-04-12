@@ -6,6 +6,7 @@ use App\Schedule;
 use App\Market;
 use App\Week;
 use App\User;
+use App\Hour;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use \Illuminate\Support\MessageBag;
@@ -37,7 +38,8 @@ class ScheduleController extends Controller
         $markets = Market::all();
         $week = Week::findOrFail($week);
         $users  = User::all();
-        return view('schedules.create', compact('week', 'users', 'markets'));
+        $hours = Hour::all();
+        return view('schedules.create', compact('week', 'users', 'markets', 'hours'));
     }
     
 
@@ -77,9 +79,10 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeSchedule(Request $request)
     {
-        //
+        Schedule::create($request->all());
+        return redirect()->route('schedules.index');
     }
 
     /**
