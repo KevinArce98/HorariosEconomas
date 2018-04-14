@@ -1,5 +1,13 @@
 @extends('layouts.default')
 
+@section('styles')
+	<style>
+		tr[id]:hover{
+			cursor: pointer;
+		}
+	</style>
+@endsection
+
 @section('content')
 	<div class="page-header">
   <div class="container-fluid">
@@ -11,7 +19,8 @@
 		<h2 class="text-success">{{ $schedules[0]->market->name }}</h2>
 		<h3 class="text-danger">{{ $schedules[0]->week->weekShow($schedules[0]->week) }}</h3>
 	@endif
-	<table class="table table-hover table-responsive" width="100%">
+	<p class="text-center text-warning">¡Selecione un horario para editarlo!</p>
+	<table class="table table-hover table-responsive" width="100%" id="allSchedules">
 		<thead>
 			<tr>
 				<th class="text-center">Colaborador</th>
@@ -27,7 +36,7 @@
 		</thead>
 		<tbody>
 			@forelse($schedules as $schedule)
-				<tr>
+				<tr id="{{$schedule->id}}">
 					<td class="text-center" width="120px">{{ $schedule->user->name }}</td>
 					<td class="text-center" width="120px">{{ $schedule->user->position->name }}</td>
 					<td class="text-center" width="120px" {{ $schedule->setClass($schedule->lunes) }}>
@@ -57,10 +66,21 @@
 					<td colspan="9" class="text-center">No existen horarios para este punto de venta</td>
 				</tr>
 			@endforelse
-			
 		</tbody>
 	</table>
 
 	<a href="{{route('schedules.index')}}" class="btn btn-warning">Volver a la lista</a>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+	$(function(){
+	$('#allSchedules tr[id]').each(function(){
+		$(this).click(function(){
+				window.location.href="/schedules/edit/"+$(this).attr('id');
+			});
+		});
+	});
+</script>
 @endsection

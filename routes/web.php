@@ -44,5 +44,7 @@ Route::get('week/{week}/schedules/create', 'ScheduleController@create')->name('s
 Route::post('schedules/store','ScheduleController@storeSchedule')->name('schedules.store');
 Route::get('schedules/{id}/','ScheduleController@show')->name('schedules.show');
 Route::post('schedules/show','ScheduleController@showSchedule')->name('schedules.showSchedule');
+Route::get('schedules/edit/{id}','ScheduleController@edit')->name('schedules.edit');
+Route::patch('schedules/update/{id}','ScheduleController@update')->name('schedules.update');
 
 Route::resource('hours', 'HourController');

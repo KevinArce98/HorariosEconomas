@@ -124,7 +124,9 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $schedule = Schedule::find($id);
+        $hours = Hour::all();
+        return view('schedules.edit', compact('schedule', 'hours'));
     }
 
     /**
@@ -136,7 +138,26 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $schedule = Schedule::find($id);
+        $data = $request->all();
+        $data += [ "user_id" => $schedule->user_id, "week_id" => $schedule->week_id, "id" => $id ];
+  
+        $errors = $this->validateUpdateSchedule($data);
+        if (count($errors) > 0) {
+            return redirect()->back()->with(compact('errors'))->withInput();
+        }
+
+        $schedule->lunes = $data['lunes'];
+        $schedule->martes = $data['martes'];
+        $schedule->miercoles = $data['miercoles'];
+        $schedule->jueves = $data['jueves'];
+        $schedule->viernes = $data['viernes'];
+        $schedule->sabado = $data['sabado'];
+        $schedule->domingo = $data['domingo'];
+        $schedule->save();
+
+        return redirect()->back()->with('message', 'Horario Actualizado');
     }
 
     /**
@@ -158,7 +179,7 @@ class ScheduleController extends Controller
 
     private function validateStoreSchedule($data){
         $errors = new MessageBag();
-
+      
         $user = User::find($data['user_id']);
         $week = Week::find($data['week_id']);
         $days = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
@@ -168,7 +189,32 @@ class ScheduleController extends Controller
                foreach ($schedules as $schedule) {
                    if ($schedule->$day != null) {
                        if ($schedule->$day == $data[$day]) {
-                          $errors->add($day, "El colaborador ya tiene la misma hora para el día $day en otro punto de venta");
+                          $errors->add($day, "El colaborador ya tiene la misma hora para el día $day en este u otro punto de venta");
+                       }
+                   }
+               }
+           }
+        }
+        return $errors;
+    }
+
+    private function validateUpdateSchedule($data){
+        $errors = new MessageBag();
+        $user = User::find($data['user_id']);
+        $week = Week::find($data['week_id']);
+        $days = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+        foreach ($days as $day) {
+           $schedules = Schedule::select($day)
+           ->where([
+            ['week_id', '=', $week->id], 
+            ['user_id', '=', $user->id], 
+            ['id', '!=', $data['id']]
+            ])->get();
+           if (count($schedules) > 0) {
+               foreach ($schedules as $schedule) {
+                   if ($schedule->$day != null) {
+                       if ($schedule->$day == $data[$day]) {
+                          $errors->add($day, "El colaborador ya tiene la misma hora para el día $day en este u otro punto de venta");
                        }
                    }
                }
