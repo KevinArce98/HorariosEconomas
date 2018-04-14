@@ -18,6 +18,7 @@
 	@endif
 	<form action="{{ route('schedules.store') }}" method="post">
 		{{ csrf_field() }}
+		<input type="hidden" name="week_id" value="{{ $week->id }}" required="">
 		<div class="form-group">
 			<label for="user_id" class="control-label">Colaborador:</label>
 			<select class="form-control" id="user_id" name="user_id" required>
@@ -45,7 +46,7 @@
 			<select class="form-control" id="lunes" name="lunes">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -56,7 +57,7 @@
 			<select class="form-control" id="martes" name="martes">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -67,7 +68,7 @@
 			<select class="form-control" id="miercoles" name="miercoles">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -78,7 +79,7 @@
 			<select class="form-control" id="jueves" name="jueves">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -89,7 +90,7 @@
 			<select class="form-control" id="viernes" name="viernes">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -100,7 +101,7 @@
 			<select class="form-control" id="sabado" name="sabado">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -111,7 +112,7 @@
 			<select class="form-control" id="domingo" name="domingo">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse

@@ -14,21 +14,25 @@
     		<thead>
     			<tr>
     				<th>Desde</th>
-    				<th>Hasta</th>
+                    <th>Hasta</th>
+    				<th>Color</th>
     				<th>Acciones</th>
     			</tr>
     		</thead>
     		<tbody>
     			@forelse($hours as $hour)
 					<tr>
-	    				<td>{{ $hour->convertTimeToNormal($hour->from) }}</td>
-	    				<td>{{ $hour->convertTimeToNormal($hour->to) }}</td>
+	    				<td>{{ ($hour->from != '00:00:00') ? $hour->convertTimeToNormal($hour->from) : 'Libre'}}</td>
+                        <td>{{ ($hour->from != '00:00:00') ? $hour->convertTimeToNormal($hour->to) : 'Libre'}}</td>
+	    				<td style="background-color: {{ $hour->color }};">&nbsp;</td>
 	    				<td>
 	    					
 	    					<form action="{{ route('hours.destroy', $hour->id) }}" method="POST" >
 					    		{{ csrf_field() }}
 					    		{{ method_field('DELETE') }}
-					    		<button href="{{ route('hours.edit', $hour->id) }}" class="btn-sm btn-warning"><i class="fa fa-pencil"></i></button>
+                                @if($hour->from != '00:00:00')
+					    		     <a href="{{ route('hours.edit', $hour->id) }}" class="btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                @endif
 	    						<button type="submit" class="btn-sm btn-danger"><i class="fa fa-trash"></i></button>
 	    					</form>
 	    				</td>

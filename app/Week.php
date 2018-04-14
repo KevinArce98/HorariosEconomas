@@ -34,4 +34,12 @@ class Week extends Model
           $date = \DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
           return $date;
     }
+
+    public function weekShow($week)
+    {
+        $from =$week->convertDateToNormal($week->from);
+        $to =$week->convertDateToNormal($week->to);
+        $show = "#$week->number $from | $to";
+        return $show;
+    }
 }

@@ -14,7 +14,7 @@ class Hour extends Model
      * @var array
      */
     protected $fillable = [
-        'from', 'to'
+        'from', 'to', 'color'
     ];
 
     public function validateHours($from, $to)
@@ -32,5 +32,10 @@ class Hour extends Model
          $from = Carbon::createFromFormat('h:i A', $time);
     	$from = "$from->hour:$from->minute";
         return $from ;
+    }
+
+    public function getColor()
+    {
+        return $this->color;
     }
 }

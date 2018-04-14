@@ -48,6 +48,7 @@ class HourController extends Controller
         }else{
             $hour->from =  $hour->convertToSQLTime($request->from);
             $hour->to =  $hour->convertToSQLTime($request->to);
+            $hour->color =  $request->color;
             $hour->save();
             return redirect()->route('hours.index');
         }
@@ -83,6 +84,7 @@ class HourController extends Controller
         }else{
             $hour->from =  $hour->convertToSQLTime($request->from);
             $hour->to =  $hour->convertToSQLTime($request->to);
+            $hour->color =  $request->color;
             $hour->save();
             return redirect()->route('hours.index');
         }

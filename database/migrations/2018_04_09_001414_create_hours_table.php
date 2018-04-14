@@ -17,6 +17,7 @@ class CreateHoursTable extends Migration
             $table->increments('id');
             $table->time('from');
             $table->time('to');
+            $table->string('color');
         });
     }
 

@@ -32,6 +32,17 @@
 		<label for="description" class="control-label">A</label>
         <input class="timepicker form-control" name="to" value="{{ $hour->convertTimeToNormal($hour->to) }}" required readonly>
 	</div>
+	<div class="form-group">
+		<label for="description" class="control-label">Color</label>
+        <select name="color" class="form-control">
+        	<option value="#769fd1" style="background-color: #769fd1;">Celeste</option>
+        	<option value="#eb6a3b" style="background-color: #eb6a3b; color: white;">Naranja</option>
+        	<option value="#f6e455" style="background-color: #f6e455;">Amarillo</option>
+        	<option value="#ffffff">Blanco</option>
+        	<option value="#80e455" style="background-color: #80e455;">Verde</option>
+
+        </select>
+	</div>
 	<div class="form-group text-right">
 		<button type="submit" class="btn btn-success">Guardar</button> | 
 		<a href="{{route('hours.index')}}" class="btn btn-warning">Volver a la lista</a>

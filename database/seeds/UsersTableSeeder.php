@@ -15,21 +15,27 @@ class UsersTableSeeder extends Seeder
     {
     	DB::table('roles')->insert([
             'name' => "admin",
-            'description' => "admin",
+            'description' => "Admin",
+        ]);
+        DB::table('markets')->insert([
+            'name' => "Gran Economas",
+            'location' => "Aguas Zarcas",
+            'description' => "El punto de venta más grande",
+            'picture' => "/img/markets/1523667594.jpg",
         ]);
         DB::table('positions')->insert([
-            'name' => "cajero",
+            'name' => "Cajero",
             'description' => "cajero",
             'payforhour' => 1500,
         ]);
         DB::table('users')->insert([
-            'name' => "admin",
+            'name' => "Admin",
             'phone' => "admin",
             'role_id' => 1,
             'position_id' => 1,
-            'lastname' => "admin",
+            'lastname' => "First",
             'username' => "admin",
-            'avatar' => "https://s25.postimg.org/4dmmf6rkv/avatar_blanco.png",
+            'avatar' => "/img/avatar-1.jpg",
             'password' => bcrypt('123456'),
         ]);
     }

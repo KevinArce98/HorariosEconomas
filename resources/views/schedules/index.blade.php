@@ -13,7 +13,7 @@
 </div>
     <div class="d-flex justify-content-center">
     	@forelse($markets as $market)
-    	<a href="#">
+    	<a href="{{ route('schedules.show', $market->id) }}">
 			<div class="card" style="width: 18rem;">
 			<h4 class="p-1 text-center text-primary">{{ $market->name }}</h4>
 			  <img class="card-img-top" src="{{ $market->picture }}" alt="{{ $market->description }}" width="286px" height="160px">

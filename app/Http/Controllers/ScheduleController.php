@@ -91,11 +91,18 @@ class ScheduleController extends Controller
      * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function show(Schedule $schedule)
+    public function show($id)
     {
-        //
+        $market = Market::find($id);
+        $weeks = Week::all();
+        return view('schedules.showWeek', compact('market', 'weeks'));
     }
 
+    public function showSchedule(Request $request)
+    {
+        $schedules =  Schedule::where(['market_id' => $request->market_id,'week_id' => $request->week])->get();
+        return view('schedules.show', compact('schedules'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
