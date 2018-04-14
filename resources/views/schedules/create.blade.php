@@ -23,7 +23,9 @@
 			<label for="user_id" class="control-label">Colaborador:</label>
 			<select class="form-control" id="user_id" name="user_id" required>
 	                @forelse($users as $user)
-	                    <option value="{{ $user->id }}">{{ $user->name }} {{ $user->lastname }} | {{ $user->position->name }}</option>
+	                    <option value="{{ $user->id }}" {{ (old("user_id") == $user->id ? "selected" : "") }}>
+	                    	{{ $user->name }} {{ $user->lastname }} | {{ $user->position->name }}
+	                    </option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -34,7 +36,9 @@
 			<label for="market_id" class="control-label">Punto de Venta:</label>
 			<select class="form-control" id="market_id" name="market_id" required>
 	                @forelse($markets as $market)
-	                    <option value="{{ $market->id }}">{{ $market->name }}</option>
+	                    <option value="{{ $market->id }}" {{ (old("market_id") == $market->id ? "selected":"") }}>
+	                    	{{ $market->name }}
+	                    </option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -46,7 +50,9 @@
 			<select class="form-control" id="lunes" name="lunes">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}" {{ (old("lunes") == $hour->id ? "selected":"") }}>
+	                    	{{ $hour->showHour($hour->id) }}
+	                    </option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -57,7 +63,9 @@
 			<select class="form-control" id="martes" name="martes">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}" {{ (old("martes") == $hour->id ? "selected":"") }}>
+	                    	{{ $hour->showHour($hour->id) }}
+	                    </option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -68,7 +76,9 @@
 			<select class="form-control" id="miercoles" name="miercoles">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}" {{ (old("miercoles") == $hour->id ? "selected":"") }}>
+	                    	{{ $hour->showHour($hour->id) }}
+	                    </option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -79,7 +89,9 @@
 			<select class="form-control" id="jueves" name="jueves">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}" {{ (old("jueves") == $hour->id ? "selected":"") }}>
+	                    	{{ $hour->showHour($hour->id) }}
+	                    </option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -90,7 +102,9 @@
 			<select class="form-control" id="viernes" name="viernes">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}" {{ (old("viernes") == $hour->id ? "selected":"") }}>
+	                    	{{ $hour->showHour($hour->id) }}
+	                    </option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -101,7 +115,9 @@
 			<select class="form-control" id="sabado" name="sabado">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}" {{ (old("sabado") == $hour->id ? "selected":"") }}>
+	                    	{{ $hour->showHour($hour->id) }}
+	                    </option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse
@@ -112,7 +128,9 @@
 			<select class="form-control" id="domingo" name="domingo">
 				<option value=""></option>
 	                @forelse($hours as $hour)
-	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}">{{ $hour->convertTimeToNormal($hour->from). " - ". $hour->convertTimeToNormal($hour->to) }}</option>
+	                    <option style="background-color: {{ $hour->color }};" value="{{ $hour->id }}" {{ (old("domingo") == $hour->id ? "selected":"") }}>
+	                    	{{ $hour->showHour($hour->id) }}
+	                    </option>
 	                @empty
 	                    <option>No hay registros</option>
 	                @endforelse

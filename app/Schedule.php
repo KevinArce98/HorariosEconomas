@@ -38,6 +38,9 @@ class Schedule extends Model
     	$hour = Hour::find($id);
     	$from = $hour->convertTimeToNormal($hour->from);
     	$to = $hour->convertTimeToNormal($hour->to);
+        if ($from == '12:00 AM' && $to == '12:00 PM') {
+            return "Libre";
+        }
         return "$from--$to";
     }
 

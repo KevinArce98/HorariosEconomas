@@ -10,6 +10,7 @@ use App\Hour;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use \Illuminate\Support\MessageBag;
+use App\Http\Requests\ScheduleRequest;  
 
 class ScheduleController extends Controller
 {
@@ -79,10 +80,22 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeSchedule(Request $request)
+    public function storeSchedule(ScheduleRequest $request)
     {
-        Schedule::create($request->all());
-        return redirect()->route('schedules.index');
+        $schedule = Schedule::where(['market_id' => $request->market_id,'week_id' => $request->week_id, 'user_id' => $request->user_id])->get();
+    
+        if (count($schedule) != 0) {
+            $week = Week::find($request->week_id);
+            $errors = new MessageBag();
+            $errors->add('schedule', "El colaborador ya tiene un horario en este punto de venta y para la semana #$week->number");
+            return redirect()->back()->with(compact('errors'))->withInput(); 
+        }
+        $errors = $this->validateStoreSchedule($request->all());
+        if (count($errors)== 0) {
+            Schedule::create($request->all());
+            return redirect()->route('schedules.index');
+        }
+        return redirect()->back()->with(compact('errors'))->withInput(); 
     }
 
     /**
@@ -141,5 +154,26 @@ class ScheduleController extends Controller
     {
         $now = Carbon::createFromFormat('d/m/Y', $dateString);
         return $now->weekOfYear;
+    }
+
+    private function validateStoreSchedule($data){
+        $errors = new MessageBag();
+
+        $user = User::find($data['user_id']);
+        $week = Week::find($data['week_id']);
+        $days = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+        foreach ($days as $day) {
+           $schedules = Schedule::select($day)->where(['week_id' => $week->id, 'user_id' => $user->id])->get();
+           if (count($schedules) > 0) {
+               foreach ($schedules as $schedule) {
+                   if ($schedule->$day != null) {
+                       if ($schedule->$day == $data[$day]) {
+                          $errors->add($day, "El colaborador ya tiene la misma hora para el día $day en otro punto de venta");
+                       }
+                   }
+               }
+           }
+        }
+        return $errors;
     }
 }

@@ -7,52 +7,60 @@
   </div>
 </div>
 <div class="container" style="color: white;">
-<h2 class="text-success">{{ $schedules[0]->market->name }}</h2>
-<h3 class="text-danger">{{ $schedules[0]->week->weekShow($schedules[0]->week) }}</h3>
-	<table class="table table-hover">
+	@if(count($schedules) > 0)
+		<h2 class="text-success">{{ $schedules[0]->market->name }}</h2>
+		<h3 class="text-danger">{{ $schedules[0]->week->weekShow($schedules[0]->week) }}</h3>
+	@endif
+	<table class="table table-hover table-responsive" width="100%">
 		<thead>
 			<tr>
-				<th>Colaborador</th>
-				<th>Puesto</th>
-				<th>Lunes</th>
-				<th>Martes</th>
-				<th>Miércoles</th>
-				<th>Jueves</th>
-				<th>Viernes</th>
-				<th>Sábado</th>
-				<th>Domingo</th>
+				<th class="text-center">Colaborador</th>
+				<th class="text-center">Puesto</th>
+				<th class="text-center">Lunes</th>
+				<th class="text-center">Martes</th>
+				<th class="text-center">Miércoles</th>
+				<th class="text-center">Jueves</th>
+				<th class="text-center">Viernes</th>
+				<th class="text-center">Sábado</th>
+				<th class="text-center">Domingo</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($schedules as $schedule)
+			@forelse($schedules as $schedule)
 				<tr>
-					<td>{{ $schedule->user->name }}</td>
-					<td>{{ $schedule->user->position->name }}</td>
-					<td {{ $schedule->setClass($schedule->lunes) }}>
+					<td class="text-center" width="120px">{{ $schedule->user->name }}</td>
+					<td class="text-center" width="120px">{{ $schedule->user->position->name }}</td>
+					<td class="text-center" width="120px" {{ $schedule->setClass($schedule->lunes) }}>
 						{{ (isset($schedule->lunes)) ? $schedule->showHour($schedule->lunes) : '' }}
 					</td>
-					<td {{ $schedule->setClass($schedule->martes) }}>
+					<td class="text-center" width="120px" {{ $schedule->setClass($schedule->martes) }}>
 						{{ (isset($schedule->martes)) ? $schedule->showHour($schedule->martes) : '' }}
 					</td>
-					<td {{ $schedule->setClass($schedule->miercoles) }}>
+					<td class="text-center" width="120px" {{ $schedule->setClass($schedule->miercoles) }}>
 						{{ (isset($schedule->miercoles)) ? $schedule->showHour($schedule->miercoles) : '' }}
 					</td>
-					<td {{ $schedule->setClass($schedule->jueves) }}>
+					<td class="text-center" width="120px" {{ $schedule->setClass($schedule->jueves) }}>
 						{{ (isset($schedule->jueves)) ? $schedule->showHour($schedule->jueves) : '' }}
 					</td>
-					<td {{ $schedule->setClass($schedule->viernes) }}>
+					<td class="text-center" width="120px" {{ $schedule->setClass($schedule->viernes) }}>
 						{{ (isset($schedule->viernes)) ? $schedule->showHour($schedule->viernes) : '' }}
 					</td>
-					<td {{ $schedule->setClass($schedule->sabado) }}>
+					<td class="text-center" width="120px" {{ $schedule->setClass($schedule->sabado) }}>
 						{{ (isset($schedule->sabado)) ? $schedule->showHour($schedule->sabado) : '' }}
 					</td>
-					<td {{ $schedule->setClass($schedule->domingo) }}>
+					<td class="text-center" width="120px" {{ $schedule->setClass($schedule->domingo) }}>
 						{{ (isset($schedule->domingo)) ? $schedule->showHour($schedule->domingo) : '' }}
 					</td>
 				</tr>
-			@endforeach
+			@empty
+				<tr>
+					<td colspan="9" class="text-center">No existen horarios para este punto de venta</td>
+				</tr>
+			@endforelse
 			
 		</tbody>
 	</table>
+
+	<a href="{{route('schedules.index')}}" class="btn btn-warning">Volver a la lista</a>
 </div>
 @endsection
