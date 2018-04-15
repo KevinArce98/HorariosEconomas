@@ -47,4 +47,6 @@ Route::post('schedules/show','ScheduleController@showSchedule')->name('schedules
 Route::get('schedules/edit/{id}','ScheduleController@edit')->name('schedules.edit');
 Route::patch('schedules/update/{id}','ScheduleController@update')->name('schedules.update');
 
+Route::get('downloadSchedules/{cod}/{cod2}', 'ScheduleController@pdf')->name('schedules.pdf');
+
 Route::resource('hours', 'HourController');

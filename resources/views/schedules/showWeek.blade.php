@@ -24,6 +24,7 @@
         </select>
     </div>
     <button type="submit" class="btn btn-primary">Ver Horario</button>
+    <a href="{{route('schedules.pdf',[$market->id, $week->id])}}" class="btn btn-warning">Descargar</a>
   </form>
 </div>
 @endsection

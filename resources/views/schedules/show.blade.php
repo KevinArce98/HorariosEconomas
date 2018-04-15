@@ -70,6 +70,7 @@
 	</table>
 
 	<a href="{{route('schedules.index')}}" class="btn btn-warning">Volver a la lista</a>
+	
 </div>
 @endsection
 

@@ -10,10 +10,12 @@ use App\Hour;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use \Illuminate\Support\MessageBag;
-use App\Http\Requests\ScheduleRequest;  
+use App\Http\Requests\ScheduleRequest; 
+use Barryvdh\DomPDF\Facade as PDF; 
 
 class ScheduleController extends Controller
 {
+   
     /**
      * Create a new controller instance.
      *
@@ -113,7 +115,9 @@ class ScheduleController extends Controller
 
     public function showSchedule(Request $request)
     {
+      
         $schedules =  Schedule::where(['market_id' => $request->market_id,'week_id' => $request->week])->get();
+       
         return view('schedules.show', compact('schedules'));
     }
     /**
@@ -221,5 +225,15 @@ class ScheduleController extends Controller
            }
         }
         return $errors;
+    }
+
+    public function pdf($idmarket ,$idweek)
+    {        
+        $schedules =  Schedule::where(['market_id' => $idmarket,'week_id' => $idweek])->get();
+        
+        //set_time_limit(0);
+        $pdf = PDF::loadView('schedules.show', compact('schedules'));
+       
+        return $pdf->stream('schedules.pdf');
     }
 }
