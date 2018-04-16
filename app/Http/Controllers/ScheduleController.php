@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use \Illuminate\Support\MessageBag;
 use App\Http\Requests\ScheduleRequest; 
 use Barryvdh\DomPDF\Facade as PDF; 
-
 class ScheduleController extends Controller
 {
    
@@ -243,10 +242,10 @@ class ScheduleController extends Controller
     public function pdf($idmarket ,$idweek)
     {        
         $schedules =  Schedule::where(['market_id' => $idmarket,'week_id' => $idweek])->get();
-        
-        //set_time_limit(0);
-        $pdf = PDF::loadView('schedules.show', compact('schedules'));
        
-        return $pdf->stream('schedules.pdf');
+        //set_time_limit(0);
+        $pdf = PDF::loadView('schedules.pdfshow', compact('schedules'));
+       
+        return $pdf->download('schedules.pdf');
     }
 }
