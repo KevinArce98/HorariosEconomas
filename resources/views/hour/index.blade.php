@@ -39,7 +39,7 @@
 	    			</tr>
     			@empty
 					<tr>
-						<td colspan="3">No hay registros</td>
+						<td colspan="4">No hay registros</td>
 					</tr>
     			@endforelse
     		</tbody>

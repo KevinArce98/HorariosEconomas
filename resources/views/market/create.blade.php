@@ -21,21 +21,21 @@
 	
 	<div class="form-group">
 		<label for="name" class="control-label">Nombre:</label>
-		<input type="text" class="form-control" id="name" placeholder="Nombre" name="name" required autofocus>
+		<input type="text" class="form-control" id="name" placeholder="Nombre" name="name" required autofocus value="{{ old('name') }}">
 	</div>
 	<div class="form-group">
 		<label for="location" class="control-label">Ubicación:</label>
-		<input type="text" class="form-control" id="location" placeholder="Ubicación" name="location" required autofocus>
+		<input type="text" class="form-control" id="location" placeholder="Ubicación" name="location" required value="{{ old('location') }}">
 	</div>
 	<div class="form-group">
 		<label for="description" class="control-label">Descripción</label>
-        <input type="text" class="form-control" id="description" placeholder="Descripción"  name="description" required>
+        <input type="text" class="form-control" id="description" placeholder="Descripción"  name="description" required value="{{ old('description') }}">
 	</div>
 	<div class="form-group row">
-            <label class="col-lg-4 col-form-label text-lg-right">Picture</label>
+            <label class="col-lg-4 col-form-label text-lg-right">Foto</label>
 
             <div class="col-lg-6">
-                <input data-preview="#picture" name="picture" type="file" id="picture">
+                <input data-preview="#picture" name="picture" type="file" id="picture" >
                 <img class="col-sm-6" id="picture"  src="" ></img>
                 <p class="help-block">Formatos: jpeg,png,jpg <br> Tamaño: max 2048mb</p>
                 @if ($errors->has('picture'))

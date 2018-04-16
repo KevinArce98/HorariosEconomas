@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Position;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PositionRequest;
 
 class PositionController extends Controller
 {
@@ -44,14 +45,8 @@ class PositionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PositionRequest $request)
     {
-        // Validations
-        $validatedData = $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'payforhour' => 'required'
-       ]);
 
        //Save Model Position
        Position::create($request->all());
@@ -91,15 +86,8 @@ class PositionController extends Controller
      * @param  \App\Position  $position
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PositionRequest $request, $id)
     {
-         // Validations
-         $validatedData = $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'payforhour' => 'required'
-       ]);
-
        $position = Position::find($id);
        $position->name = $request['name'];
        $position->description = $request['description'];

@@ -35,11 +35,11 @@
 	<div class="form-group">
 		<label for="description" class="control-label">Color</label>
         <select name="color" class="form-control">
-        	<option value="#769fd1" style="background-color: #769fd1;">Celeste</option>
-        	<option value="#eb6a3b" style="background-color: #eb6a3b; color: white;">Naranja</option>
-        	<option value="#f6e455" style="background-color: #f6e455;">Amarillo</option>
-        	<option value="#ffffff">Blanco</option>
-        	<option value="#80e455" style="background-color: #80e455;">Verde</option>
+        	<option value="#769fd1" style="background-color: #769fd1;" {{ ($hour->color == '#769fd1' ? 'selected' : '') }}>Celeste</option>
+        	<option value="#eb6a3b" style="background-color: #eb6a3b; color: white;" {{ ($hour->color == '#eb6a3b' ? 'selected' : '') }}>Naranja</option>
+        	<option value="#f6e455" style="background-color: #f6e455;" {{ ($hour->color == '#f6e455' ? 'selected' : '') }}>Amarillo</option>
+        	<option value="#ffffff" {{ ($hour->color == '#ffffff' ? 'selected' : '') }}>Blanco</option>
+        	<option value="#80e455" style="background-color: #80e455;" {{ ($hour->color == '#80e455' ? 'selected' : '') }}>Verde</option>
 
         </select>
 	</div>

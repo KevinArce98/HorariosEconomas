@@ -53,7 +53,7 @@ class HourController extends Controller
         if ($validate <= 0) {
             $errors = new MessageBag();
             $errors->add('hour', 'La hora "Desde" tiene que ser mayor 1h que la hora "A"');
-            return redirect()->back()->with(compact('errors')); 
+            return redirect()->back()->with(compact('errors'))->withInput(); 
         }else{
             $hour->from =  $hour->convertToSQLTime($request->from);
             $hour->to =  $hour->convertToSQLTime($request->to);

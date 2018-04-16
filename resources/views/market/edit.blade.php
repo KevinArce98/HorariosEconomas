@@ -22,26 +22,26 @@
 	
 	<div class="form-group">
 		<label for="name" class="control-label">Nombre:</label>
-		<input type="text" class="form-control" id="name" placeholder="Nombre" value="{{ $market->name }}" name="name" required autofocus>
+		<input type="text" class="form-control" id="name" placeholder="Nombre" value="{{ old('name', $market->name) }}" name="name" required autofocus>
 	</div>
 	<div class="form-group">
 		<label for="location" class="control-label">Ubicación:</label>
-		<input type="text" class="form-control" id="location" placeholder="Ubicación" value="{{ $market->location }}" name="location" required autofocus>
+		<input type="text" class="form-control" id="location" placeholder="Ubicación" value="{{ old('location',$market->location) }}" name="location" required >
 	</div>
 	<div class="form-group">
 		<label for="description" class="control-label">Descripción</label>
-        <input type="text" class="form-control" id="description" placeholder="Descripción" value="{{ $market->description }}" name="description" required>
+        <input type="text" class="form-control" id="description" placeholder="Descripción" value="{{ old('description', $market->description) }}" name="description" required>
 	</div>
 	<div class="form-group row">
             <label class="col-lg-4 col-form-label text-lg-right">Foto</label>
 
             <div class="col-lg-6">
-                <input data-preview="#picture" name="picture" type="file" id="picture">
-                <img class="col-sm-6" id="picture" name="picture" src="{{ $market->picture }}" ></img>
+                <input data-preview="#picture" name="picture" type="file" id="picture" value="{{ $market->picture }}">
+                <img class="col-sm-6" id="picture" name="picture" src="{{ $market->picture }}" width="286px" height="140px"></img>
                 <p class="help-block">Formatos: jpeg,png,jpg <br> Tamaño: max 2048mb</p>
                 @if ($errors->has('picture'))
                     <div class="invalid-feedback">
-                        <strong>{{ $errors->first('picture') }}</strong>
+                        <strong>{{ $errors->first('picture') }}</strong>	
                     </div>
                 @endif
             </div>

@@ -29,11 +29,11 @@
 	</div>
 	<div class="form-group">
 		<label for="description" class="control-label">Paga por Hora</label>
-        <input type="text" class="form-control" id="payforhour" placeholder="Salario"  name="payforhour" required>
+        <input type="number" step=any min="1" class="form-control" id="payforhour" placeholder="Salario"  name="payforhour" required>
 	</div>
 	<div class="form-group text-right">
 		<button type="submit" class="btn btn-success">Crear</button> | 
-		<a href="{{route('roles.index')}}" class="btn btn-warning">Volver a la lista</a>
+		<a href="{{route('positions.index')}}" class="btn btn-warning">Volver a la lista</a>
 	</div>
 </form>
 

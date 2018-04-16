@@ -29,8 +29,8 @@
         <input type="text" class="form-control" id="description" value="{{ $position->description }}"  name="description" required>
 	</div>
 	<div class="form-group">
-		<label for="description" class="control-label">Paga por hora</label>
-        <input type="text" class="form-control" id="payforhour" value="{{ $position->payforhour }}"  name="payforhour" required>
+		<label for="payforhour" class="control-label">Paga por hora</label>
+        <input type="number" step=any min="1" class="form-control" id="payforhour" value="{{ $position->payforhour }}"  name="payforhour" required>
 	</div>
 	<div class="form-group text-right">
 		<button type="submit" class="btn btn-success">Guardar</button> | 

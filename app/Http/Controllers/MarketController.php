@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Market;
 use Illuminate\Http\Request;
+use App\Http\Requests\MarketRequest;
+use Validator;
 
 class MarketController extends Controller
 {
@@ -43,16 +45,8 @@ class MarketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MarketRequest $request)
     {
-
-          // Validations
-        $validatedData = $request->validate([
-             'name' => 'required|string',
-             'location' => 'required|string',
-             'description' => 'string',
-             'picture' => 'required|image|mimes:jpeg,png,jpg|max:2048'
-        ]);
         $data = $request->all();
 
         $image = $request['picture'];
@@ -101,16 +95,22 @@ class MarketController extends Controller
      */
     public function update(Request $request, $id)
     {
-          // Validations
-        $validatedData = $request->validate([
-             'name' => 'required|string',
-             'location' => 'required|string',
-             'description' => 'required|string',
-             'picture' => 'image|mimes:jpeg,png,jpg|max:2048'
-        ]);
-
+        // Validations
+        $rules =[
+            'name'    => 'required|string',
+            'location' => 'required|string',
+            'description'   => 'required|string',
+        ];
+        $messages = [
+            'name.required'     => 'El campo nombre es requerido.',
+            'name.string'      => 'El campo nombre tiene que ser texto.',
+            'location.required'     => 'El campo ubicación es requerido.',
+            'location.string'      => 'El campo ubicación tiene que ser texto.',
+            'description.required'     => 'El campo descripción es requerido.',
+            'description.string'      => 'El campo descripción tiene que ser texto.',
+        ];
+        Validator::make($request->all(), $rules, $messages)->validate();
         
-
         $market = Market::find($id);
         $market->name = $request['name'];
         $market->description = $request['description'];

@@ -59,6 +59,11 @@ class ScheduleController extends Controller
 
     public function storeWeek(Request $request)
     {
+        $errors = new MessageBag();
+        if (!isset($request->from) || !isset($request->to)) {
+            $errors->add('emptyInput', 'Por favor selecione una semana.');
+            return redirect()->back()->with(compact('errors')); 
+        }
         $from = Week::convertToSQL($request['from']);
         $response = Week::where('from', '=', $from)->first();
         if ($response == null) {
@@ -69,7 +74,6 @@ class ScheduleController extends Controller
             $week->number = $numerOfWeek;
             $week->save();
         }else { 
-            $errors = new MessageBag();
             $errors->add('numerOfWeek', 'La semana selecionada ya ha sido creada, por favor selecione otra.');
             return redirect()->back()->with(compact('errors')); 
         }
@@ -110,6 +114,15 @@ class ScheduleController extends Controller
     {
         $market = Market::find($id);
         $weeks = Week::all();
+        if (count($weeks) == 0) {
+            $errors = new MessageBag();
+            if (isset($market)) {
+                $errors->add('weeks', "$market->name no tiene horarios creados");
+            }else {
+                $errors->add('user', "No se puedo encontrar ese horario");
+            }
+            return redirect()->back()->with(compact('errors'));
+        }
         return view('schedules.showWeek', compact('market', 'weeks'));
     }
 

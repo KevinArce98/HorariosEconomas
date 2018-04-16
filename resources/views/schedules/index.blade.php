@@ -6,6 +6,17 @@
 	  <h2 class="h5 no-margin-bottom">Horarios</h2>
 	</div>
 </div>
+<div class="container">
+	@if($errors->any())
+		<div class="alert alert-danger">
+			<ul>
+				@foreach($errors->all() as $error)
+			    <li>{{ $error }}</li>
+			    @endforeach
+			</ul>
+		</div>
+	@endif
+</div>
 <div class=" container text-right mb-2">
 	@if(count($markets) != 0)
     	<a href="{{ route('schedules.select') }}" class="btn btn-success">Crear Nuevo</a>
