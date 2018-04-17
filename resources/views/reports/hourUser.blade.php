@@ -7,7 +7,16 @@
 	</div>
 </div>
 <div class="container" style="color: white;">
-        <form action="{{ route('schedule.selected') }}" method="post">
+  @if($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+      </ul>
+    </div>
+  @endif
+        <form action="{{ route('schedules.showEmpHour') }}" method="post">
           {{ csrf_field() }}
           
           <div class="form-group">
@@ -26,10 +35,9 @@
                     @endforeach
                 </select>
             </div>
-            <a href="{{route('schedules.showEmpHour',[$user->id, $week->id])}}" class="btn btn-warning">Descargar</a>
             <div class="row d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary">Aceptar</button>
-                  </div>
+                <button type="submit" class="btn btn-primary">Descargar</button>
+            </div>
         </form>
       </div>      
 
