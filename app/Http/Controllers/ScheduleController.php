@@ -263,9 +263,9 @@ class ScheduleController extends Controller
         return view('reports.hourUser', compact('users', 'weeks'));
     }
 
-    public function  showEmpHour($idUser ,$idweek)
+    public function  showEmpHour(Request $request)
     {
-        $schedules = Schedule::where(['user_id' => $idUser,'week_id' => $idweek])->get();
+        $schedules = Schedule::where(['user_id' => $request->user->id,'week_id' => $request->week->id])->get();
         $user= User::find($idUser);
         $userPay= Position::find($user->position_id);
         $hourWorks = $this->totalHours($schedules);
@@ -285,7 +285,7 @@ class ScheduleController extends Controller
         $payTotal= $pay +$payHorasExtra;
         $payforhour=$userPay->payforhour;
 
-      $pdf = PDF::loadView('reports.hourUserTable', compact('schedules','hourWorks','horasExtra','payHorasExtra','payforhour','payTotal'));
+      $pdf = PDF::loadView('reports.hourUserTable', compact('schedules','pay','hourWorks','horasExtra','payHorasExtra','payforhour','payTotal'));
        
       return $pdf->download('Employee.pdf');
         
