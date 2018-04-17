@@ -68,6 +68,7 @@
                 <li class="{{ (strpos(\Request::route()->getName(), 'position') !== false ) ? 'active' : '' }}"><a href="{{ route('positions.index') }}"> <i class="fa fa-id-card"></i>Puestos </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'users') !== false ) ? 'active' : '' }}"><a href="{{ route('users.index') }}"> <i class="fa fa-users"></i>Usuarios </a></li>
                 <li class="{{ (strpos(\Request::route()->getName(), 'roles') !== false ) ? 'active' : '' }}"><a href="{{ route('roles.index') }}"> <i class="fa fa-list"></i>Roles </a></li>
+                <li class="{{ (strpos(\Request::route()->getName(), 'reporte') !== false ) ? 'active' : '' }}"><a href="{{ route('reports.index') }}"> <i class="	fa fa-floppy-o"></i>Reportes </a></li>
 
         </ul>
       </nav>

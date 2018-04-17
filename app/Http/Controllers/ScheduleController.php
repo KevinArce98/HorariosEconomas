@@ -248,4 +248,10 @@ class ScheduleController extends Controller
        
         return $pdf->download('schedules.pdf');
     }
+
+    public function callViews()
+    {
+        
+        return view('reports.index');
+    }
 }
