@@ -49,5 +49,7 @@ Route::patch('schedules/update/{id}','ScheduleController@update')->name('schedul
 
 Route::get('downloadSchedules/{cod}/{cod2}', 'ScheduleController@pdf')->name('schedules.pdf');
 Route::get('reportsGenerator', 'ScheduleController@callViews')->name('reports.index');
+Route::get('reportForHour', 'ScheduleController@empHour')->name('empHour.index');
+Route::get('schedules/reportsForHour/{cod}/{cod2}','ScheduleController@showEmpHour')->name('schedules.showEmpHour');
 
 Route::resource('hours', 'HourController');

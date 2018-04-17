@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Position;
 use App\Schedule;
 use App\Market;
 use App\Week;
@@ -253,5 +253,86 @@ class ScheduleController extends Controller
     {
         
         return view('reports.index');
+    }
+
+    public function empHour()
+    {
+        
+        $users  = User::all();
+        $weeks = Week::orderBy('number')->get();
+        return view('reports.hourUser', compact('users', 'weeks'));
+    }
+
+    public function  showEmpHour($idUser ,$idweek)
+    {
+        $schedules = Schedule::where(['user_id' => $idUser,'week_id' => $idweek])->get();
+        $user= User::find($idUser);
+        $userPay= Position::find($user->position_id);
+
+        
+
+
+        
+      $hourWorks = $this->totalHours($schedules);
+
+      $pay = $hourWorks*($userPay->payforhour);
+        
+
+      $pdf = PDF::loadView('reports.hourUserTable', compact('schedules','pay','hourWorks'));
+       
+      return $pdf->download('Employee.pdf');
+        
+    }
+
+
+    public function totalHours($schedules){
+
+        $cont =0;
+       
+       
+        $hourl = Hour::find($schedules[0]->lunes);
+       $cont= $this-> calTotalPerDay($hourl);
+       $hourM = Hour::find($schedules[0]->martes);
+       $cont= $cont + $this-> calTotalPerDay($hourM);
+       $hourM = Hour::find($schedules[0]->martes);
+       $cont= $cont + $this-> calTotalPerDay($hourM);
+       $hourM = Hour::find($schedules[0]->miercoles);
+       $cont= $cont + $this-> calTotalPerDay($hourM);
+       $hourM = Hour::find($schedules[0]->jueves);
+       $cont= $cont + $this-> calTotalPerDay($hourM);
+       $hourM = Hour::find($schedules[0]->viernes);
+       $cont= $cont + $this-> calTotalPerDay($hourM);
+       $hourM = Hour::find($schedules[0]->sabado);
+       $cont= $cont + $this-> calTotalPerDay($hourM);
+       $hourM = Hour::find($schedules[0]->domingo);
+       $cont= $cont + $this-> calTotalPerDay($hourM);
+
+       return($cont/3600);
+
+
+
+    }
+    public function calTotalPerDay($hour){
+       
+        $horaini = ($hour->from);
+    	$horafin = ($hour->to);
+
+        $horai=substr($horaini,0,2);
+	$mini=substr($horaini,3,2);
+	$segi=substr($horaini,6,2);
+ 
+	$horaf=substr($horafin,0,2);
+	$minf=substr($horafin,3,2);
+	$segf=substr($horafin,6,2);
+ 
+	$ini=((($horai*60)*60)+($mini*60)+$segi);
+	$fin=((($horaf*60)*60)+($minf*60)+$segf);
+ 
+	$dif=$fin-$ini;
+ 
+	
+	return($dif);
+        
+
     }
 }

@@ -27,7 +27,7 @@
         <p class="lead">Para ingresar al reporte de horas por empleado trabajadas en las sedes, favor acceda al siguiente link.</p>
         <hr class="my-4">
         <p>Te brinda la posibilidad de descarga por empleado.</p>
-        <a align="center"class="btn btn-primary btn-lg" href="#" role="button">Empleados</a>
+        <a align="center"class="btn btn-primary btn-lg" href="{{ route('empHour.index') }}" role="button">Empleados</a>
       </div>
 </div>
 </div>
