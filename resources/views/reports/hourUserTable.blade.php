@@ -20,9 +20,15 @@
               <h2 align="center" class="text-success">{{ $schedules[0]->market->name }}</h2>
               <h3  align="center"class="text-danger">{{ $schedules[0]->week->weekShow($schedules[0]->week) }}</h3>
               <br>
-              <h3 align="center"class="text-danger">Total de Horas trabajadas: {{$hourWorks}}.</h3>
-              <h3 align="center"class="text-danger">Monto a pagar en colones: {{$pay}}.</h3>
+              <h3 align="center"class="text-danger">Total de Horas trabajadas en la semana: {{$hourWorks}}.</h3>
+              <h3 align="center"class="text-danger">Monto a pagar en colones: {{$payTotal}}.</h3>
               <br>
+              <h3 align="center"class="text-danger">Desglose de Salario.</h3>
+              <br>
+              <h4 align="center"class="text-danger">Total de horas extra Laboradas: {{$horasExtra}}.</h4>
+              <h4 align="center"class="text-danger">Monto a pagado por horas extra en colones: {{$payHorasExtra}}.</h4>
+              <h4 align="center"class="text-danger">Salario por Hora: {{$payforhour}}.</h4>
+              
           @endif
           <h3 align="center" class="text-danger">HORARIO EMPLEADO</h3>
           <table align="center" class="table table-hover table-responsive" width="10%" id="allSchedules">

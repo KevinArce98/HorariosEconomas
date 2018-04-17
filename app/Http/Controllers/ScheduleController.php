@@ -268,17 +268,24 @@ class ScheduleController extends Controller
         $schedules = Schedule::where(['user_id' => $idUser,'week_id' => $idweek])->get();
         $user= User::find($idUser);
         $userPay= Position::find($user->position_id);
+        $hourWorks = $this->totalHours($schedules);
 
-        
+      if($hourWorks>48){
+          $horasExtra= $hourWorks - 48;
+          $pay = 48*($userPay->payforhour);
+          $payHorasExtra = (($userPay->payforhour)/2)+($userPay->payforhour);
+         
 
+      }else{
+        $horasExtra=0;
+        $payHorasExtra=0;
+        $pay = $hourWorks*($userPay->payforhour);
+      }
 
-        
-      $hourWorks = $this->totalHours($schedules);
+        $payTotal= $pay +$payHorasExtra;
+        $payforhour=$userPay->payforhour;
 
-      $pay = $hourWorks*($userPay->payforhour);
-        
-
-      $pdf = PDF::loadView('reports.hourUserTable', compact('schedules','pay','hourWorks'));
+      $pdf = PDF::loadView('reports.hourUserTable', compact('schedules','hourWorks','horasExtra','payHorasExtra','payforhour','payTotal'));
        
       return $pdf->download('Employee.pdf');
         
