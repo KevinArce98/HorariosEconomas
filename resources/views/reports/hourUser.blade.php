@@ -7,7 +7,7 @@
 	</div>
 </div>
 <div class="container" style="color: white;">
-        <form  method="post">
+        <form action="{{ route('schedule.selected') }}" method="post">
           {{ csrf_field() }}
           
           <div class="form-group">
@@ -27,7 +27,9 @@
                 </select>
             </div>
             <a href="{{route('schedules.showEmpHour',[$user->id, $week->id])}}" class="btn btn-warning">Descargar</a>
-          
+            <div class="row d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                  </div>
         </form>
       </div>      
 
