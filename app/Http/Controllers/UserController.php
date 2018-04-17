@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Position;
 use App\Role;
+use Illuminate\Support\MessageBag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+   
     /**
      * Create a new controller instance.
      *
@@ -101,7 +103,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $errors = new MessageBag();
         $user = User::find($id);
+        if(count($user->schedules) > 0){
+            $errors->add('destroyUser', 'No se puede eliminar este usuario porque tiene horarios.');
+            return redirect()->back()->with(compact('errors'));
+        }
         $user->delete();
 
         $users = User::all();

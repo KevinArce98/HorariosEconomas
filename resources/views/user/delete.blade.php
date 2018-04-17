@@ -7,6 +7,15 @@
       </div>
     </div>
     <div class="container" style="color: white;">
+        @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     	<h3 class="text-danger text-center">¿Estás seguro que quieres eliminar este usuario?</h3>
     	 <div class="form-group row">
             <label class="col-lg-4 col-form-label text-lg-right">Nombre</label>
