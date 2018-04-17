@@ -54,4 +54,10 @@ class Hour extends Model
         }
         return "$from--$to";
     }
+
+    public function schedules()
+    {
+       $schdules = Schedule::where('lunes', $this->id)->orWhere('martes', $this->id)->orWhere('miercoles', $this->id)->orWhere('jueves', $this->id)->orWhere('viernes', $this->id)->orWhere('sabado', $this->id)->orWhere('domingo', $this->id)->get();
+        return $schdules;
+    }
 }

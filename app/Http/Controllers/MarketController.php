@@ -6,6 +6,7 @@ use App\Market;
 use Illuminate\Http\Request;
 use App\Http\Requests\MarketRequest;
 use Validator;
+use Illuminate\Support\MessageBag;
 
 class MarketController extends Controller
 {
@@ -149,7 +150,12 @@ class MarketController extends Controller
      */
     public function destroy($id)
     {
+        $errors = new MessageBag();
         $market = Market::find($id);
+        if(count($market->schedules) > 0){
+            $errors->add('destroyMarket', 'No se puede eliminar este punto de venta porque tiene horarios.');
+            return redirect()->back()->with(compact('errors'));
+        }
         $market->delete();
         $markets = Market::all();
         return view('market.index', compact('markets'));

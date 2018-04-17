@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
 
 
 class RoleController extends Controller
@@ -125,7 +126,12 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        $errors = new MessageBag();
         $role = Role::find($id);
+        if(count($role->users) > 0){
+            $errors->add('destroyRole', 'No se puede eliminar este rol porque tiene usuarios.');
+            return redirect()->back()->with(compact('errors'));
+        }
         $role->delete();
 
         $roles = Role::all();

@@ -6,6 +6,7 @@ use App\Position;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PositionRequest;
+use Illuminate\Support\MessageBag;
 
 class PositionController extends Controller
 {
@@ -106,7 +107,12 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
+        $errors = new MessageBag();
         $position = Position::find($id);
+        if(count($position->users) > 0){
+            $errors->add('destroyPosition', 'No se puede eliminar este puesto porque tiene usuarios.');
+            return redirect()->back()->with(compact('errors'));
+        }
         $position->delete();
 
         $positions = Position::all();

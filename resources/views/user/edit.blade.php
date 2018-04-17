@@ -20,7 +20,7 @@
         {!! csrf_field() !!}
         {{ method_field('PATCH') }}
 
-        <div class="form-group row">
+         <div class="form-group row">
             <label class="col-lg-4 col-form-label text-lg-right">Nombre</label>
 
             <div class="col-lg-6">
@@ -28,7 +28,7 @@
                         type="text"
                         class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                         name="name"
-                        value="{{ $user->name }}"
+                        value="{{ old('name', $user->name) }}"
                         required>
                 @if ($errors->has('name'))
                     <div class="invalid-feedback">
@@ -41,9 +41,9 @@
         <div class="form-group row {{ $errors->has('lastname') ? ' has-error' : '' }}">
             <label class="col-lg-4 col-form-label text-lg-right">Apellido</label>
             <div class="col-md-6">
-                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $user->lastname }}" required>
+                <input id="lastname" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"" name="lastname" value="{{ old('lastname', $user->lastname) }}" required>
                 @if ($errors->has('lastname'))
-                    <span class="help-block">
+                    <span class="invalid-feedback">
                         <strong>{{ $errors->first('lastname') }}</strong>
                     </span>
                 @endif
@@ -53,9 +53,9 @@
         <div class="form-group row {{ $errors->has('username') ? ' has-error' : '' }}">
             <label class="col-lg-4 col-form-label text-lg-right">Nombre de usuario</label>
             <div class="col-md-6">
-                <input id="username" type="text" class="form-control" name="username" value="{{ $user->username }}" required>
+                <input id="username" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"" name="username" value="{{ old('username', $user->username) }}" required>
                 @if ($errors->has('username'))
-                    <span class="help-block">
+                    <span class="invalid-feedback">
                         <strong>{{ $errors->first('username') }}</strong>
                     </span>
                 @endif
@@ -67,28 +67,27 @@
          <div class="form-group row {{ $errors->has('phone') ? ' has-error' : '' }}">
             <label class="col-lg-4 col-form-label text-lg-right">Teléfono</label>
             <div class="col-md-6">
-                <input id="phone" type="text" class="form-control" name="phone" value="{{ $user->phone }}" required>
+                <input id="phone" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"" name="phone" value="{{ old('phone', $user->phone) }}" required>
                 @if ($errors->has('phone'))
-                    <span class="help-block">
+                    <span class="invalid-feedback">
                         <strong>{{ $errors->first('phone') }}</strong>
                     </span>
                 @endif
             </div>
         </div>
-
         <div class="form-group row {{ $errors->has('role_id') ? ' has-error' : '' }}">
             <label class="col-lg-4 col-form-label text-lg-right">Rol</label>
             <div class="col-md-6">
-                <select class="form-control" id="role_id" name="role_id">
+                <select class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"" id="role_id" name="role_id">
               
                     @forelse($roles as $role)
-                        <option {{ $user->role->id == $role->id ? ' selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
+                        <option {{ old('role_id',$user->role->id) == $role->id ? ' selected' : '' }} value="{{ $role->id }}">{{ $role->name }}</option>
                     @empty
                         <option>No hay registros</option>
                     @endforelse
                 </select>
                 @if ($errors->has('role_id'))
-                    <span class="help-block">
+                    <span class="invalid-feedback">
                         <strong>{{ $errors->first('role_id') }}</strong>
                     </span>
                 @endif
@@ -98,21 +97,20 @@
         <div class="form-group row {{ $errors->has('position_id') ? ' has-error' : '' }}">
             <label class="col-lg-4 col-form-label text-lg-right">Puesto</label>
             <div class="col-md-6">
-                <select class="form-control" id="position_id" name="position_id">
+                <select class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"" id="position_id" name="position_id">
                     @forelse($positions as $position)
-                        <option {{ $user->position->id == $position->id ? ' selected' : '' }} value="{{ $position->id }}">{{ $position->name }}</option>
+                        <option {{ old('position_id', $user->position->id) == $position->id ? ' selected' : '' }} value="{{ $position->id }}">{{ $position->name }}</option>
                     @empty
                         <option>No hay registros</option>
                     @endforelse
                 </select>
                 @if ($errors->has('position_id'))
-                    <span class="help-block">
+                    <span class="invalid-feedback">
                         <strong>{{ $errors->first('position_id') }}</strong>
                     </span>
                 @endif
             </div>
         </div>
-
 
         <div class="form-group row">
             <label class="col-lg-4 col-form-label text-lg-right">Contraseña</label>
@@ -145,7 +143,6 @@
                 @endif
             </div>
         </div>
-
 
         <div class="form-group row">
             <label class="col-lg-4 col-form-label text-lg-right">Avatar</label>

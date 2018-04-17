@@ -61,6 +61,36 @@ class RegisterController extends Controller
             'username' => 'required|string|max:20|unique:users',
             'avatar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'password' => 'required|string|min:6|confirmed',
+        ], [
+            'name.required' => 'El campo nombre es requerido',
+            'lastname.required' => 'El campo apellido es requerido',
+            'phone.required' => 'El campo teléfono es requerido',
+            'role_id.required' => 'El campo rol es requerido',
+            'position_id.required' => 'El campo puesto es requerido',
+            'username.required' => 'El campo nombre de usuario es requerido',
+            'avatar.required' => 'El campo avatar es requerido',
+            'password.required' => 'El campo contraseña es requerido',
+
+            'name.string' => 'El campo nombre tiene que ser texto.',
+            'lastname.string' => 'El campo apellido tiene que ser texto.',
+            'phone.string' => 'El campo teléfono tiene que ser texto.',
+            'username.string' => 'El campo nombre de usuario tiene que ser texto.',
+            'password.string' => 'El campo contraseña tiene que ser texto.',
+
+            'name.max' => 'El campo nombre tiene que tener máximo 255 caracteres.',
+            'lastname.max' => 'El campo apellido tiene que tener máximo 255 caracteres.',
+            'phone.max' => 'El campo teléfono tiene que tener máximo 255 caracteres.',
+            'username.max' => 'El campo nombre de usuario tiene que tener máximo 20 caracteres.',
+
+            'password.min' => 'La contraseña debe tener al menos 6 caracteres.',
+            'password.confirmed' => 'La confirmación de contraseña no coincide.',
+
+            'avatar.image'      => 'El campo foto tiene que ser una imagen.',
+            'avatar.max'      => 'El tamaño de la imagen tiene que ser menor a 2mb.',
+            'avatar.mimes'      => 'El formato de la imagen tiene que ser jpeg, png o jpg.',
+
+            'username.unique' => 'El nombre de usuario ya esta en uso.',
+
         ]);
     }
 

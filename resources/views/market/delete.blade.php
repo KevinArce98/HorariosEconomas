@@ -7,6 +7,15 @@
       </div>
     </div>
     <div class="container">
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     	<h3 class="text-danger text-center">¿Estás seguro que quieres eliminar este punto de venta?</h3>
     	<div class="bg-light p-4 mb-2">
     		<h4>{{ $market->name }}</h4>

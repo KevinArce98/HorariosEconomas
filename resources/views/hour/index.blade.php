@@ -6,6 +6,17 @@
         <h2 class="h5 no-margin-bottom">Horas Para Horarios</h2>
       </div>
     </div>
+    <div class="container">
+         @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
     <div class=" container text-right mb-2">
     	<a href="{{ route('hours.create') }}" class="btn btn-success">Crear Nueva</a>
     </div>

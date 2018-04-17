@@ -23,4 +23,9 @@ class Market extends Model
     protected $hidden = [
        
     ];
+    
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

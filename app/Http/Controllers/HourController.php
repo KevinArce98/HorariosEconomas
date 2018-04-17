@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Hour;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use \Illuminate\Support\MessageBag;
+use Illuminate\Support\MessageBag;
 
 class HourController extends Controller
 {
@@ -107,7 +107,12 @@ class HourController extends Controller
      */
     public function destroy($id)
     {
-            $hour = Hour::find($id);
+        $errors = new MessageBag();
+        $hour = Hour::find($id);
+        if(count($hour->schedules()) > 0){
+            $errors->add('destroyHour', 'No se puede eliminar esta hora porque tiene horarios.');
+            return redirect()->back()->with(compact('errors'));
+        }
         $hour->delete();
         return redirect()->route('hours.index');
     }
