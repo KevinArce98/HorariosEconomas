@@ -275,18 +275,15 @@ class ScheduleController extends Controller
         }
         $userPay= Position::find($user->position_id);
         $hourWorks = $this->totalHours($schedules);
-
         if($hourWorks>48){
           $horasExtra= $hourWorks - 48;
           $pay = 48*($userPay->payforhour);
           $payHorasExtra = (($userPay->payforhour)/2)+($userPay->payforhour);
-         
-
-      }else{
-        $horasExtra=0;
-        $payHorasExtra=0;
-        $pay = $hourWorks*($userPay->payforhour);
-      }
+        }else{
+          $horasExtra=0;
+          $payHorasExtra=0;
+          $pay = $hourWorks*($userPay->payforhour);
+        }
 
         $payTotal= $pay +$payHorasExtra;
         $payforhour=$userPay->payforhour;
@@ -297,44 +294,18 @@ class ScheduleController extends Controller
     }
 
 
-    public function totalHours($schedules){
-
-        $cont =0;
-       
-        $hourl = Hour::find($schedules[0]->lunes);
-       $cont= $this-> calTotalPerDay($hourl);
-       $hourM = Hour::find($schedules[0]->martes);
-       $cont= $cont + $this-> calTotalPerDay($hourM);
-       $hourM = Hour::find($schedules[0]->martes);
-       $cont= $cont + $this-> calTotalPerDay($hourM);
-       $hourM = Hour::find($schedules[0]->miercoles);
-       $cont= $cont + $this-> calTotalPerDay($hourM);
-       $hourM = Hour::find($schedules[0]->jueves);
-       $cont= $cont + $this-> calTotalPerDay($hourM);
-       $hourM = Hour::find($schedules[0]->viernes);
-       $cont= $cont + $this-> calTotalPerDay($hourM);
-       $hourM = Hour::find($schedules[0]->sabado);
-       $cont= $cont + $this-> calTotalPerDay($hourM);
-       $hourM = Hour::find($schedules[0]->domingo);
-       $cont= $cont + $this-> calTotalPerDay($hourM);
-
-       return($cont/3600);
-    }
-
-    public function calTotalPerDay($hour){
-        $horaini = intval($hour['from']);
-        $horafin = intval($hour['to']);
-
-        $horai=substr($horaini,0,2);
-    	$mini=substr($horaini,3,2);
-    	$segi=substr($horaini,6,2);
-    	$horaf=substr($horafin,0,2);
-    	$minf=substr($horafin,3,2);
-    	$segf=substr($horafin,6,2);
-
-    	$ini=((($horai*60)*60)+($mini*60)+$segi);
-    	$fin=((($horaf*60)*60)+($minf*60)+$segf);
-    	$dif=$fin-$ini;
-    	return($dif);
+    public function totalHours($schedule){
+        $total = 0;
+        $days = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+        foreach ($days as $day) {
+            if (isset($schedule[0]->$day)) {
+                $hour = Hour::find($schedule[0]->$day);
+                if ($hour->from != '00:00:00' && $hour->to != '12:00:00') {
+                    $total = ($hour->diffHours($hour->from, $hour->to)+$total);
+                }
+            }
+        }
+        return $total;
+     
     }
 }

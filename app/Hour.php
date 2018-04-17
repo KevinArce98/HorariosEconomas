@@ -23,6 +23,11 @@ class Hour extends Model
     	$to = Carbon::createFromFormat('h:i A', $to);
     	return $from->diffInHours($to, false); 
     }
+    public function diffHours($from, $to){
+        $from = Carbon::createFromFormat('H:i:s', $from);
+        $to = Carbon::createFromFormat('H:i:s', $to);
+        return $from->diffInHours($to, false); 
+    }
     public function convertTimeToNormal($time){
     	$from = Carbon::createFromFormat('H:i:s', $time)->format('h:i A');
         return $from ;
