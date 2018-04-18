@@ -10,7 +10,7 @@
     	<a href="{{ route('register') }}" class="btn btn-success">Crear Nuevo</a>
     </div>
     <div class="d-flex justify-content-center">
-    	<table class="table table-light table-hover text-center">
+    	<table class="table table-light table-hover text-center table-responsive">
     		<thead>
     			<tr>
                     <th>Nombre de Usuario</th>
