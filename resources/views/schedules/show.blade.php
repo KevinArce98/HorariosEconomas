@@ -20,7 +20,7 @@
 		<h3 class="text-danger">{{ $schedules[0]->week->weekShow($schedules[0]->week) }}</h3>
 	@endif
 	<p class="text-center text-warning">¡Selecione un horario para editarlo!</p>
-	<table class="table table-hover table-responsive" width="100%" id="allSchedules">
+	<table class="table table-hover" width="100%" id="allSchedules">
 		<thead>
 			<tr>
 				<th class="text-center">Colaborador</th>
