@@ -18,9 +18,11 @@
 	@endif
 </div>
 <div class=" container text-right mb-2">
+	@if(auth()->user()->role->name == 'admin')
 	@if(count($markets) != 0)
     	<a href="{{ route('schedules.select') }}" class="btn btn-success">Crear Nuevo</a>
-    @endif
+		@endif
+		@endif
 </div>
     <div class="d-flex justify-content-center">
     	@forelse($markets as $market)

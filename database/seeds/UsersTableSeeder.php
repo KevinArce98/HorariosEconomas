@@ -25,15 +25,15 @@ class UsersTableSeeder extends Seeder
         ]);
         DB::table('positions')->insert([
             'name' => "Cajero",
-            'description' => "cajero",
+            'description' => "Cajero",
             'payforhour' => 1500,
         ]);
         DB::table('users')->insert([
             'name' => "Admin",
-            'phone' => "admin",
+            'phone' => "84388120",
             'role_id' => 1,
             'position_id' => 1,
-            'lastname' => "First",
+            'lastname' => "Page",
             'username' => "admin",
             'avatar' => "/img/avatar-1.jpg",
             'password' => bcrypt('123456'),

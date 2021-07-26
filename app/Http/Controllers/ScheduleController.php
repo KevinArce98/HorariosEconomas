@@ -257,9 +257,14 @@ class ScheduleController extends Controller
 
     public function empHour()
     {
-        
+        $errors = new MessageBag();
         $users  = User::all();
         $weeks = Week::orderBy('number')->get();
+        if(count($users) == 0  || count($weeks) == 0)
+        {
+            $errors->add('user', "No existen semanas o usuarios.");
+            return redirect()->back()->with(compact('errors'));
+        }
         return view('reports.hourUser', compact('users', 'weeks'));
     }
 

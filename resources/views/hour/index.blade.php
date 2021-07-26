@@ -21,7 +21,7 @@
     	<a href="{{ route('hours.create') }}" class="btn btn-success">Crear Nueva</a>
     </div>
     <div class="d-flex justify-content-center">
-    	<table class="table table-light table-hover text-center table-responsive">
+    	<table class="table table-light table-hover text-center">
     		<thead>
     			<tr>
     				<th>Desde</th>
